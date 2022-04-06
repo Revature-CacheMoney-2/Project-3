@@ -16,7 +16,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 /**
  * Spring Security configuration file to set up request authentication.
  * 
- * @author Ibrahima Diallo, Brian Gardner, Cody Gonsowski, & Jeffrey Lor
+ * @author Ibrahima Diallo, Brian Gardner, Cody Gonsowski, and Jeffrey Lor
  */
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Configures user & admin roles for accessing the application.
+     * Configures user and admin roles for accessing the application.
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // enable CORS & disable CSRF
-        http = http.cors().and().csrf().disable();
+        http = http.csrf().disable();
 
         // stateless session management
         http = http

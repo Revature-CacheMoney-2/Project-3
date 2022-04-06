@@ -62,12 +62,10 @@ public class Transaction {
 		this.endingBalance = ending_balance;
 	}
 
-
-
 	/**
 	 *
 	 * ******************STRICTLY FOR TESTING PURPOSES*********************
-	 *
+	 * @return this will return the toString method
 	 * */
 	public String toStringWithoutDate() {
 		return "Transaction{" +

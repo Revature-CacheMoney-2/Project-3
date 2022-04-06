@@ -7,11 +7,14 @@ import Toggle from "./style/Toggle";
 import { lightTheme, darkTheme } from "../components/style/Themes";
 import { useNavigate } from "react-router-dom";
 import config from "../config.js";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // The registrration component handles the registration form for new users.
 // The info is persisted in the database and locally (partial).
 
 function RegisterView() {
+
+	
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		firstName: "",
@@ -173,9 +176,19 @@ function RegisterView() {
 						//console.log("Registration successful");
 						navigate("/signin");
 					} else {
-						alert(
-							"Some error occurred during registration. \n Check if the email or username is already in use?"
-						);
+						toast.error('There was an issue creating an account', {
+							position: "bottom-center",
+							autoClose: 2000,
+							hideProgressBar: true,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							});
+
+						// alert(
+						// 	"Some Error occurred during registration. \n Check if the email or username is already in use?"
+						// );
 					}
 				}
 			})
@@ -191,6 +204,17 @@ function RegisterView() {
 		<ThemeProvider theme={themeMode}>
 			<>
 				<GlobalStyles />
+				<ToastContainer
+					position="bottom-center"
+					autoClose={2000}
+					hideProgressBar
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+					/>
 				<div className="container-view login-outer-container">
 					<div className="login-inner-container">
 						<div className="login-content-box">

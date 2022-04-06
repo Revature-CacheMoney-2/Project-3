@@ -13,6 +13,8 @@ import com.revature.cachemoney.backend.beans.repositories.AccountRepo;
 import com.revature.cachemoney.backend.beans.repositories.UserRepo;
 import com.revature.cachemoney.backend.beans.security.SecurityConfig;
 
+import com.revature.cachemoney.backend.beans.utils.EmailUtil;
+import com.revature.cachemoney.backend.beans.utils.PropertiesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -86,6 +88,15 @@ public class UserService {
             }
 
             // inform successful result
+            try {
+                String body = PropertiesUtil.getHTML("src/main/resources/welcome.html");
+                body = body.replace("{FIRSTNAME LASTNAME}", user.getFirstName() + " " + user.getLastName());
+                EmailUtil.getInstance().sendEmail(user.getEmail(), "Account Created", body);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
             return true;
         }
 
@@ -107,7 +118,7 @@ public class UserService {
     /**
      * Service method to GET a User by username.
      * 
-     * @param user containing at least username & password
+     * @param user containing at least username and password
      * @return User object with username
      */
     public User getUserByUsername(User user) {
