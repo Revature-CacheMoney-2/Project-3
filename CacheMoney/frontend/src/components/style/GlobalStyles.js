@@ -489,6 +489,62 @@ tr:nth-child(even) {
 
 /* navigation styling end */
 
+/* request styling */
+
+.RequestFormContainer {
+	color: ${({ theme }) => theme.text};
+	border-top: 1px solid ${({ theme }) => theme.shadow};
+    background-color: ${({ theme }) => theme.gentle};
+    border: 3px solid ${({ theme }) => theme.shadow};
+    box-shadow: -8px 8px  ${({ theme }) => theme.shadow};border: 1px solid ${({ theme }) => theme.shadow};
+    border-bottom-left-radius: 8px;
+    background-color: ${({ theme }) => theme.gentle};
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: content-box;
+    width: 50%;
+    height: 100%;
+    border-top-left-radius: 25px;
+}
+
+.RequestFormHeader {
+    background-color: ${({ theme }) => theme.shadow};
+    height:5px;
+    width:100%;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    padding-bottom: 9%;
+    background-repeat: no-repeat;
+}
+
+/* request styling end */
+
+/* request list styling */
+.RequestListHeaderContainer {
+background-color: ${({ theme }) => theme.shadow};
+border-top-right-radius: 25px;
+width: 26.5%;
+
+}
+.Request {
+    color: ${({ theme }) => theme.text};
+    border-top: 1px solid ${({ theme }) => theme.shadow};
+    background-color: ${({ theme }) => theme.gentle};
+    /*border: 3px solid ${({ theme }) => theme.shadow};*/
+    /*box-shadow: -8px 8px  ${({ theme }) => theme.shadow};border: 1px solid ${({ theme }) => theme.shadow};*/
+    border-bottom-left-radius: 8px;
+    background-color: ${({ theme }) => theme.gentle};
+    display: flex;
+    flex-direction: column;
+    box-sizing: content-box;
+    font-size: 15px;
+}
+
+/* Request list styling end */
+
 /* footer styling */
 
 .footer {

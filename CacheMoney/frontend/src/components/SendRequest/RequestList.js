@@ -62,9 +62,9 @@ const RequestList = (props) => {
             return(
                 <div className="Request">
                     
-                    <p style={{color: "black"}}>sourceAccountId: {request.sourceAccount.accountId}</p>
-                    <p style = {{color: " black"}}>destinationAccountId: {request.destinationAccount.accountId}</p>
-                    <p style= {{color: "black"}}>description: {request.description}</p>
+                    <p style={{color: "black"}}>Source Account#: {request.sourceAccount.accountId}</p>
+                    <p style = {{color: " black"}}>Destination Account#: {request.destinationAccount.accountId}</p>
+                    <p style= {{color: "black"}}>Memo/Description: {request.description}</p>
                     <p style={{color: "black"}}>Amount: ${request.amount}</p>
                 </div>
             )    
