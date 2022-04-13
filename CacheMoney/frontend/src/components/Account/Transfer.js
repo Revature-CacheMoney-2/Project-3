@@ -41,9 +41,9 @@ function Transfer(props) {
         postTransfer(formData);
         props.handleClick(event);
         //navigate("/accounts");
-        alert(
-            "Transfer successfully completed! Please view your updated balance."
-        );
+        // alert(
+        //     "Transfer successfully completed! Please view your updated balance."
+        // );
     };
 
     return (
