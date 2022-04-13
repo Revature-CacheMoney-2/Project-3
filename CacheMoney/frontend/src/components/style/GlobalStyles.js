@@ -489,6 +489,86 @@ tr:nth-child(even) {
 
 /* navigation styling end */
 
+/* transfer styling */
+
+.transfer-header {
+    background-color: ${({ theme }) => theme.shadow};
+    height:20px;
+    width:200%;
+    padding-top: 4%;
+    padding-bottom: 9%;
+    border-top-left-radius: 8px;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-weight: bold;
+    font-size: 100%
+    margin-top: -1%;
+}
+
+.transfer-form-container {
+    color: ${({ theme }) => theme.text};
+	border-top: 1px solid ${({ theme }) => theme.shadow};
+    background-color: ${({ theme }) => theme.gentle};
+    border: 3px solid ${({ theme }) => theme.shadow};
+    box-shadow: -8px 8px  ${({ theme }) => theme.shadow};border: 1px solid ${({ theme }) => theme.shadow};
+    border-bottom-left-radius: 8px;
+    background-color: ${({ theme }) => theme.gentle};
+    width: 30%;
+    height: 70%;
+    margin-top: 2%;
+    padding-top: 1.5%;
+    padding-bottom: 3%;
+    border-top-left-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: content-box;
+    align-items: center;
+    margin-left: 50px;
+
+}
+
+.transfer-form {
+    padding: 0px 10px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: max-content;
+    border-radius: 10px;
+}
+
+.transfer-button {
+    font-size: 20px;
+    color: ${({ theme }) => theme.backlight};
+ 	background-color: ${({ theme }) => theme.text};
+ 	box-shadow: -5px 5px ${({ theme }) => theme.shadow};
+}
+
+#input {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 4px 0;
+    display: inline-block;
+    border-radius: 2px;
+    font-
+
+}
+
+#input label {
+    margin-right: 4px;
+    font-weight: bold;
+}
+
+.transfer-button: hover {
+    color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.highlight};}
+}
+
+/* transfer styling end */
+
 /* request styling */
 
 .RequestFormContainer {
