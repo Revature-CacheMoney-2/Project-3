@@ -662,7 +662,7 @@ color: ${({ theme }) => theme.text};
 .RequestListHeaderContainer {
 background-color: ${({ theme }) => theme.shadow};
 border-top-right-radius: 25px;
-width: 32%;
+width: 28.5%;
 text-align: center;
 font-size: 15px;
 
