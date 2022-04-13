@@ -137,7 +137,7 @@ public class AccountService {
             Double amount = transaction.getTransactionAmount();
 
             // verify the account belongs to the user
-            if (account.getUser().getUserId() == userId) {
+            if (account.getUser().getUserId().equals(userId)) {
                 // force decimal to be 2 places
                 amount = Math.round(amount * 100) / 100.0;
 
@@ -255,7 +255,7 @@ public class AccountService {
             transaction.setAccount(source.get());
 
             // validates that the source & destination User IDs match
-            if (source.get().getUser().getUserId() == dest.get().getUser().getUserId()) {
+            if (source.get().getUser().getUserId().equals(dest.get().getUser().getUserId())) {
                 // attempt to withdraw & deposit
                 if (withdrawFromAccount(userId, transaction) && depositToAccount(userId, destTransaction)) {
                     // transfer success;
