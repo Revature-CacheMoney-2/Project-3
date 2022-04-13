@@ -15,6 +15,8 @@ import QRModal from "./QRModal";
 // The info is persisted in the database and locally (partial).
 
 function RegisterView() {
+
+	
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		firstName: "",
@@ -166,7 +168,6 @@ function RegisterView() {
     // Lets cover any sort of backend response
     let responseData;
     const url = config.url;
-
     const newUser = {
       firstName: formData.firstName,
       lastName: formData.lastName,
@@ -178,23 +179,13 @@ function RegisterView() {
     axios
       .post(`${url}users/`, newUser)
       .then((response) => {
-        //console.log(response);
         responseStatus = response.status;
         responseData = response.data;
         if (responseStatus === 200) {
           if (responseData.mfa === true && responseData.secretImageUri) {
-            //console.log("Registration successful");
-            //navigate("/qrcode");
-            console.log(responseData);
-
             setQrCode(responseData.secretImageUri);
-
             setQrFlag(true);
           } else navigate("/signin");
-        } else {
-          // alert(
-          // 	"Some Error occurred during registration. \n Check if the email or username is already in use?"
-          // );
         }
       })
       .catch((error) => {
@@ -207,68 +198,67 @@ function RegisterView() {
           draggable: true,
           progress: undefined,
         });
-        console.error(`Error: ${error}`);
       });
   }
 
-  const [theme, themeToggler, mountedComponent] = useDarkMode();
-  const themeMode = theme === "light" ? lightTheme : darkTheme;
+const [theme, themeToggler, mountedComponent] = useDarkMode();
+const themeMode = theme === "light" ? lightTheme : darkTheme;
 
-  if (!mountedComponent) return <div />;
+if (!mountedComponent) return <div />;
 
-  return (
-    <ThemeProvider theme={themeMode}>
-      <>
-        <GlobalStyles />
-        <ToastContainer
-          position="bottom-center"
-          autoClose={2000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <div className="container-view login-outer-container">
-          <div className="login-inner-container">
-            <div className="login-content-box">
-              <Toggle
-                id="register-theme-button"
-                theme={theme}
-                toggleTheme={themeToggler}
-              />
-              <h2 className="logo-smaller" id="register-logo">
-                CacheMoney
-              </h2>
-              <div id="register-white-box" className="login-white-box">
-                <div className="login-white-box-column">
-                  <div className="error-container">
-                    <span id="registration-error"></span>
-                  </div>
-                  <div id="registration-name-boxes">
-                    <div id="box-L" className="reg-name-box">
-                      <label htmlFor="firstName" id="label-L">
-                        First name:
-                        <span
-                          className="detail-text"
-                          id="firstname-span"
-                        ></span>
-                        <span
-                          className="err-desc"
-                          id="firstname-description"
-                        ></span>
-                      </label>
+return (
+  <ThemeProvider theme={themeMode}>
+    <>
+      <GlobalStyles />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <div className="container-view login-outer-container">
+        <div className="login-inner-container">
+          <div className="login-content-box">
+            <Toggle
+              id="register-theme-button"
+              theme={theme}
+              toggleTheme={themeToggler}
+            />
+            <h2 className="logo-smaller" id="register-logo">
+              CacheMoney
+            </h2>
+            <div id="register-white-box" className="login-white-box">
+              <div className="login-white-box-column">
+                <div className="error-container">
+                  <span id="registration-error"></span>
+                </div>
+                <div id="registration-name-boxes">
+                  <div id="box-L" className="reg-name-box">
+                    <label htmlFor="firstName" id="label-L">
+                      First name:
+                      <span
+                        className="detail-text"
+                        id="firstname-span"
+                      ></span>
+                      <span
+                        className="err-desc"
+                        id="firstname-description"
+                      ></span>
+                    </label>
                       <input
-                        type="text"
-                        name="firstName"
-                        className="reg-input-box"
-                        id="firstname"
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
+			type="text"
+			name="firstName"
+			className="reg-input-box"
+			id="firstname"
+			onChange={handleChange}
+			required
+		      />
+		    </div>
 
                     <div id="box-R" className="reg-name-box">
                       <label htmlFor="lastName" id="label-R">
