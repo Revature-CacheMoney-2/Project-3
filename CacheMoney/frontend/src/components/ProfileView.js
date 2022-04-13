@@ -1,22 +1,33 @@
 import React, { useState } from "react";
 import Footer from "./Footer.js";
 import userStore from "../store/Store.js";
-import InfoTable from "./InfoTable";
-import { useNavigate, Route, Routes} from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { useDarkMode } from "./style/useDarkMode";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./style/GlobalStyles";
-import Toggle from "./style/Toggle";
 import { lightTheme, darkTheme } from "./style/Themes";
 import SideNav from "./SideNav.js";
-import TestVieew from './TestVieew';
+import DefaultDisplay from "./DefaultDisplay.js";
+import EmailDisplay from "./EmailDisplay.js";
+import PhoneDisplay from "./PhoneDisplay.js";
+import AddressDisplay from "./AddressDisplay.js";
+import UsernameDisplay from "./UsernameDisplay.js";
+import PasswordDisplay from "./PasswordDisplay.js";
+import Toggle from "./style/Toggle";
+import ResetPasswordView from "./ResetPasswordView";
+import SignInDisplay from "./SignInDisplay";
+import ResetPasswordDisplay from "./ResetPasswordDisplay";
+import './ProfileView.css';
 
 
+function setPage(id) {
 
-function ProfileView(props){
+}
+
+function ProfileView(){
     const navigate = useNavigate();
-    const [theme, themeToggler, mountedComponent] = useDarkMode();
-    const themeMode = theme === "light" ? lightTheme : darkTheme;
+
+    let userData = userStore.getState().userReducer;
 
     const handleLogout = (event) => {
         userStore.dispatch({
@@ -31,32 +42,47 @@ function ProfileView(props){
         navigate("/main");
     };
 
-    /*const updateProfilePageContent = (event) => {
+    const toResetPasswordView = (event) => {
+
+        navigate("/resetpassword");
+
+    };
+    const updateProfilePageContent = (event) => {
         setPage(event.target.id);
         profilePageContentComponent(event.target.id);
     };
+
+
     const profilePageContentComponent = () => {
+        let page;
         switch (page) {
             case "sign-in":
-                return <SignInDisplay />;
+                return <SignInDisplay handleClick={updateProfilePageContent} />;
             case "address":
-                return <AddressDisplay  />;
+                return <AddressDisplay handleClick={updateProfilePageContent} />;
             case "phone":
-                return <PhoneDisplay  />;
+                return <PhoneDisplay handleClick={updateProfilePageContent} />;
             case "email":
-                return <EmailDisplay  />;
-            // Add new cases here to add more navbar links
+                return <EmailDisplay handleClick={updateProfilePageContent} />;
+            case "reset password":
+                return <EmailDisplay handleClick={updateProfilePageContent} />;
             default:
-                return <DefaultDisplay />;
+                return <DefaultDisplay handleClick={updateProfilePageContent} />;
         }
-    };*/
+    };
 
+
+    const [theme, themeToggler, mountedComponent] = useDarkMode();
+    const themeMode = theme === "light" ? lightTheme : darkTheme;
+    if (!mountedComponent) return <div />;
 
     return (
         <ThemeProvider theme={themeMode}>
-            <GlobalStyles />
-            <div className="profile-page-container container-view">
+
+            <div className="container-view">
                 <div className="header">
+                    <GlobalStyles />
+
                     <button id="main-page-button" onClick={toMain}>
                         {" "}
                         Home
@@ -65,25 +91,34 @@ function ProfileView(props){
                         Profile
                     </div>
                     <div className="main-upper-buttons">
+                        <button id="logout-button" >
                         <button id="logout-button" onClick={handleLogout}>
                             {" "}
                             Log Out
                         </button>
                     </div>
                 </div>
-                <SideNav />
-                <Routes>
-                    <Route path='test' element={<TestVieew />} />
-                </Routes>
 
 
-                <div className="footer-container">
-                    <Footer />
+
+                <div className="profile-page-container">
+                    <div className="container-child">
+                        <SideNav  />
+                    </div>
+                    <div className="container-child main-body">
+                        <Routes>
+                            <Route path="username" element={<UsernameDisplay />}> </Route>
+                            <Route path="password" element={<ResetPasswordView />}> </Route>
+                            <Route path="address" element={<AddressDisplay />}> </Route>
+                            <Route path="phone" element={<PhoneDisplay />}> </Route>
+                            <Route path="email" element={<EmailDisplay />}> </Route>
+                        </Routes>
+                    </div>
                 </div>
+
             </div>
         </ThemeProvider>
     );
 }
 
 export default ProfileView;
-

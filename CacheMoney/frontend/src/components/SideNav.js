@@ -1,40 +1,62 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 function SideNav(props) {
 
     return (
         <div id="mySidenav" className="sidenav">
-			<span
-                className="navigation-link"
-                //onClick={}
-                id="sign-in"
-            >
-				Sign-In
-			</span>
+            <button className="sidenav-button">
+                <Link to="/profile/username"
+                      className="page-link"
 
-            <span
-                className="navigation-link"
-                //onClick={}
-                id="address"
-            >
-				Address
-			</span>
+                      id="username"
+                >
 
-            <span
-                className="navigation-link"
-                //onClick={}
-                id="phone"
-            >
-				Phone
-			</span>
+                    Username
+                </Link>
+            </button>
+            <button className="sidenav-button">
+                <Link to="/profile/password"
+                      className="page-link"
 
-            <Link to='/profile/test'
-                className="navigation-link"
-                //onClick={}
-                id="email"
-            >
-				Email
-			</Link>
+                      id="password"
+                >
+
+                    Password
+                </Link>
+            </button>
+
+            <button className="sidenav-button">
+                <Link to="/profile/address"
+                      className="page-link"
+
+                      id="address"
+
+                >
+                    Address
+                </Link>
+            </button>
+
+            <button className="sidenav-button">
+                <Link to="/profile/phone"
+                      className="page-link"
+
+                      id="phone"
+
+                >
+                    Phone
+                </Link>
+            </button>
+
+            <button className="sidenav-button">
+                <Link to="/profile/email"
+                      className="page-link"
+
+                      id="email"
+
+                >
+                    Email
+                </Link>
+            </button>
 
         </div>
     );
