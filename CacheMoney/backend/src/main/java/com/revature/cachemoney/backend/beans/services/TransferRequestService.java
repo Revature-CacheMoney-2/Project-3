@@ -3,6 +3,7 @@ package com.revature.cachemoney.backend.beans.services;
 import com.revature.cachemoney.backend.beans.models.Account;
 import com.revature.cachemoney.backend.beans.models.Transfer;
 import com.revature.cachemoney.backend.beans.models.TransferRequest;
+import com.revature.cachemoney.backend.beans.models.User;
 import com.revature.cachemoney.backend.beans.repositories.AccountRepo;
 import com.revature.cachemoney.backend.beans.repositories.TransferRepo;
 import com.revature.cachemoney.backend.beans.repositories.TransferRequestRepo;
@@ -35,27 +36,32 @@ public class TransferRequestService {
         if(transferRequest.getAmount() <= 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Amount cannot be less than or equal 0");
         }
+        User destinationUser = destinationAccount.getUser();
+        User sourceUser = sourceAccount.getUser();
         // check if destination is different from source
-        if(destinationAccount!=sourceAccount) {
-            // check if destination and source exists
-            if(destinationAccount!=null && sourceAccount!=null) {
-                transferRequest.setDestinationAccount(destinationAccount);
-                transferRequest.setSourceAccount(sourceAccount);
-                // Setting Description to default
-                if (transferRequest.getDescription() == null) {
-                    transferRequest.setDescription(
-                            "Transfer from account "
-                                    + transferRequest.getSourceAccount().getAccountId()
-                                    + " to "
-                                    + transferRequest.getDestinationAccount().getAccountId()
-                    );
+        if (destinationUser != sourceUser) {
+            if (destinationAccount != sourceAccount) {
+                // check if destination and source exists
+                if (destinationAccount != null && sourceAccount != null) {
+                    transferRequest.setDestinationAccount(destinationAccount);
+                    transferRequest.setSourceAccount(sourceAccount);
+                    // Setting Description to default
+                    if (transferRequest.getDescription() == null) {
+                        transferRequest.setDescription(
+                                "Transfer from account "
+                                        + transferRequest.getSourceAccount().getAccountId()
+                                        + " to "
+                                        + transferRequest.getDestinationAccount().getAccountId()
+                        );
+                    }
+                    return this.transferRequestRepo.save(transferRequest);
                 }
-                return this.transferRequestRepo.save(transferRequest);
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Source and Destination accounts must exist");
             }
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Source and Destination accounts must exist");
+            // if source and/or destination is the same or null
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Source and Destination accounts cannot be the same account");
         }
-        // if source and/or destination is the same or null
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Source and Destination accounts cannot be the same account");
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "You can't request money from yourself, just do it in a transfer");
     }
 
     public List<TransferRequest> findByRequestedUser(int userId) {
@@ -73,8 +79,9 @@ public class TransferRequestService {
         // only involved users can delete the request
         if(destinationUser == userId || sourceUser == userId) {
             this.transferRequestRepo.delete(transferRequest);
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Only the requester or requestee may delete a request");
         }
-        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Only the requester or requestee may delete a request");
     }
 
     public Transfer acceptTransfer(int requestId, Integer userId) throws ResponseStatusException {

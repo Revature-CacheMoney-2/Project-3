@@ -8,7 +8,7 @@ import config from "../../config";
 import store from "../../store/Store";
 import "./RequestList.css";
 
-const RequestList = (props) => {
+const RequestList = ({rerender, rerenderer}) => {
     const [requests, setRequests] = useState([]);
 
     useEffect(() => {
@@ -48,7 +48,44 @@ const RequestList = (props) => {
             }, []));
         })
 
-    }, []);
+    }, [rerenderer]);
+
+    const onAccept = (requestId) => {
+        return () => {
+            axios.post(`${config.url}request/accept/${requestId}`, {}, {
+                headers: {
+                    token: store.getState().userReducer.token,
+                    userId: store.getState().userReducer.userId
+                }
+            })
+            .then(() => {
+                // TODO put a toast.success here
+                rerender();
+            })
+            .catch(() => {
+                // TODO put a toast.error here
+            })
+        }
+    }
+
+    const onDecline = (requestId) => {
+        return () => {
+            axios.get(`${config.url}request/delete/${requestId}`, {
+                headers: {
+                    token: store.getState().userReducer.token,
+                    userId: store.getState().userReducer.userId
+                }
+            })
+            .then(() => {
+                rerender();
+                // TODO put a toast.success here
+            })
+            .catch(() => {
+                // TODO put a toast.error here
+            })
+        }
+    }
+
     return (
         <div className="RequestList">
             <div className="RequestListHeaderContainer">
@@ -58,14 +95,25 @@ const RequestList = (props) => {
             </div>
             
         {
-        requests.map(request => {
+        requests.map((request, i) => {
             return(
-                <div className="Request">
+                <div key={i} className="Request">
                     
                     <p style={{color: "black"}}>Source Account#: {request.sourceAccount.accountId}</p>
                     <p style = {{color: " black"}}>Destination Account#: {request.destinationAccount.accountId}</p>
                     <p style= {{color: "black"}}>Memo/Description: {request.description}</p>
                     <p style={{color: "black"}}>Amount: ${request.amount}</p>
+                    {
+                        (request.direction == "towards us")  ? 
+                            (
+                                <>
+                                <button onClick={onAccept(request.requestId)}>Accept Request</button>
+                                <button onClick={onDecline(request.requestId)}>Decline Request</button>
+                                </>
+                            ) : (
+                                <button onClick={onDecline(request.requestId)}>Cancel Request</button>
+                            )
+                    }
                 </div>
             )    
         })

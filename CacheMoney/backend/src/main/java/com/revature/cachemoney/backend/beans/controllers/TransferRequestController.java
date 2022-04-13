@@ -1,6 +1,5 @@
 package com.revature.cachemoney.backend.beans.controllers;
 
-import com.revature.cachemoney.backend.beans.annotations.RequireJwt;
 import com.revature.cachemoney.backend.beans.models.Transfer;
 import com.revature.cachemoney.backend.beans.models.TransferRequest;
 import com.revature.cachemoney.backend.beans.security.JwtUtil;
@@ -25,7 +24,6 @@ public class TransferRequestController {
     }
 
     @PostMapping
-    // TODO @RequireJwt
     public TransferRequest save(@RequestHeader(name = "token") String token,
                                 @RequestHeader(name = "userId") Integer userId,
                                 @RequestBody TransferRequest transferRequest) throws ResponseStatusException {
@@ -37,7 +35,6 @@ public class TransferRequestController {
     }
 
     @GetMapping("source")
-    // TODO @RequireJwt
     public List<TransferRequest> findByRequestingUser(
             @RequestHeader(name = "token") String token,
             @RequestHeader(name = "userId") Integer userId) throws ResponseStatusException {
@@ -49,7 +46,6 @@ public class TransferRequestController {
     }
 
     @GetMapping("destination")
-    // TODO @RequireJwt
     public List<TransferRequest> findByRequestedUser(
             @RequestHeader(name = "token") String token,
             @RequestHeader(name = "userId") Integer userId) throws ResponseStatusException {
@@ -61,7 +57,6 @@ public class TransferRequestController {
     }
 
     @PostMapping("accept/{requestId}")
-    // TODO @RequireJwt
     public Transfer acceptTransfer(@PathVariable int requestId,
                                    @RequestHeader(name = "token") String token,
                                    @RequestHeader(name = "userId") Integer userId) throws ResponseStatusException {
@@ -72,8 +67,7 @@ public class TransferRequestController {
         }
     }
 
-    @DeleteMapping("{requestId}")
-    // TODO @RequireJwt
+    @GetMapping("delete/{requestId}")
     public void deleteTransfer(@PathVariable int requestId,
                                @RequestHeader(name = "token") String token,
                                @RequestHeader(name = "userId") Integer userId) throws ResponseStatusException {

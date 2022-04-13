@@ -10,11 +10,8 @@ import "./Request.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify";
 
-const Request = (props) => {
+const Request = ({rerender}) => {
     const [accounts, setAccounts] = useState([]);
-    const notify=() => {
-        toast("")
-    }
 
     //cutting a slice of state to hold form data
     const  [formData, setFormData]  = useState({
@@ -41,8 +38,6 @@ const Request = (props) => {
             <option key={account.accountId} value={account.accountId}>{account.name} (id: {account.accountId})</option>
         );
     });
-    
-    
 
     //setting formData using setFormData to update dynamically
     const handleChange = (event) => {
@@ -87,6 +82,7 @@ const Request = (props) => {
                     draggable: true,
                     progress: undefined,
                 }):toast.error('error')
+                rerender();
             })
             .catch((error) => {
                 console.error(`Error: ${error}`)

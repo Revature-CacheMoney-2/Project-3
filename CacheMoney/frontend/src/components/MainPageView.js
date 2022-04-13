@@ -10,9 +10,8 @@ import Toggle from "./style/Toggle";
 import { lightTheme, darkTheme } from "./style/Themes";
 import CreateAccount from "./Account/CreateAccount.js";
 import AccountDisplay from "./Account/AccountDisplay.js";
-import SendRequest from "./SendRequest/SendRequest.js";
 import RequestTab from "./SendRequest/RequestTab.js";
-import Request from "./SendRequest/Request.js";
+import TransferTab from "./SendRequest/TransferTab.js";
 
 function MainPageView() {
 	const navigate = useNavigate();
@@ -47,7 +46,7 @@ function MainPageView() {
 				return <CreateAccount handleClick={updateMainPageContent} />;
 			// Add new cases here to add more navbar links
 			case "send-request":
-				return <SendRequest handleClick={updateMainPageContent} />;
+				return <TransferTab/>;
 			case "request-tab":
 				return <RequestTab/>;
 			default:
