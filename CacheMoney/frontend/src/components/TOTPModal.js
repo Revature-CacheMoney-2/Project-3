@@ -116,7 +116,8 @@ export default function TOTPModal(props) {
             <p className="small-font">
               Open the two-factor authentication app on your device to view your
               authentication code and verify your identity.
-
+            </p>
+            
             <strong className="small-font">Authentication code</strong>
             <OTPInput
               value={OTP}
