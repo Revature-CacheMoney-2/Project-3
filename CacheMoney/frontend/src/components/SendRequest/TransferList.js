@@ -68,9 +68,9 @@ const TransferList = (props) => {
             return(
                 <div key={i} className="transfer">
                     
-                    <p style={{color: "black"}}>sourceAccountId: {transfer.sourceAccount.accountId}</p>
-                    <p style = {{color: " black"}}>destinationAccountId: {transfer.destinationAccount.accountId}</p>
-                    <p style= {{color: "black"}}>description: {transfer.description}</p>
+                    <p style={{color: "black"}}>Source Account#: {transfer.sourceAccount.accountId}</p>
+                    <p style = {{color: " black"}}>Destination Account#: {transfer.destinationAccount.accountId}</p>
+                    <p style= {{color: "black"}}>Memo/Description: {transfer.description}</p>
                     <p style={{color: "black"}}>Amount: ${transfer.amount}</p>
                 </div>
             )    

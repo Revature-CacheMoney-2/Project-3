@@ -569,6 +569,45 @@ tr:nth-child(even) {
 
 /* transfer styling end */
 
+/* transfer list styling */
+
+.transferListHeaderContainer {
+    background-color: ${({ theme }) => theme.shadow};
+    border-top-right-radius: 25px;
+    width: 32%;
+    text-align: center;
+    font-size: 15px;
+}
+
+.transfer {
+color: ${({ theme }) => theme.text};
+    border-top: 1px solid ${({ theme }) => theme.shadow};
+    border-bottom: 2px solid;
+    border-color: black;
+    background-color: ${({ theme }) => theme.gentle};
+    /*border: 3px solid ${({ theme }) => theme.shadow};*/
+    /*box-shadow: -8px 8px  ${({ theme }) => theme.shadow};border: 1px solid ${({ theme }) => theme.shadow};*/
+    background-color: ${({ theme }) => theme.gentle};
+    display: flex;
+    flex-direction: column;
+    box-sizing: content-box;
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-bottom: .2%;
+}
+
+.transferList {
+width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* transfer list styling end */
+
 /* request styling */
 
 .RequestFormContainer {
