@@ -12,3 +12,11 @@
  .RequestListCancel {
      color: black;
  }
+
+ .transfer {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px red;
+ }

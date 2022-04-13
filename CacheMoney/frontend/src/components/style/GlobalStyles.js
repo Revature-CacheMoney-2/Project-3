@@ -517,12 +517,12 @@ tr:nth-child(even) {
     box-shadow: -8px 8px  ${({ theme }) => theme.shadow};border: 1px solid ${({ theme }) => theme.shadow};
     border-bottom-left-radius: 8px;
     background-color: ${({ theme }) => theme.gentle};
-    width: 30%;
+    width: 50%;
     height: 70%;
-    margin-top: 2%;
-    padding-top: 1.5%;
-    padding-bottom: 3%;
+    margin-top: 0.5%;
     border-top-left-radius: 8px;
+	padding-bottom: 4%;
+	padding-top: 1%;
     display: flex;
     flex-direction: column;
     box-sizing: content-box;
@@ -532,7 +532,6 @@ tr:nth-child(even) {
 }
 
 .transfer-form {
-    padding: 0px 10px 0;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -574,7 +573,7 @@ tr:nth-child(even) {
 .transferListHeaderContainer {
     background-color: ${({ theme }) => theme.shadow};
     border-top-right-radius: 25px;
-    width: 32%;
+    width: 75%;
     text-align: center;
     font-size: 15px;
 }
@@ -593,21 +592,22 @@ color: ${({ theme }) => theme.text};
     box-sizing: content-box;
     font-size: 15px;
     font-weight: bold;
-    padding-left: 2%;
-    padding-right: 2%;
     margin-bottom: .2%;
 }
 
 .transferList {
-width: 48%;
+	width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    float: right;
+}
 
+.transferListHeaderContainer{
+	
 }
 
 .transferListHeader {
+	width: 100%;
     display: inline;
 }
 
