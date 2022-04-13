@@ -510,14 +510,16 @@ tr:nth-child(even) {
 
 .RequestFormHeader {
     background-color: ${({ theme }) => theme.shadow};
-    height:5px;
-    width:100%;
+    height:20px;
+    width:200%;
+    border-top-left-radius: 8px;
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
     background-size: contain;
     padding-bottom: 9%;
     background-repeat: no-repeat;
+    text-align: center;
 }
 
 /* request styling end */
@@ -527,6 +529,7 @@ tr:nth-child(even) {
 background-color: ${({ theme }) => theme.shadow};
 border-top-right-radius: 25px;
 width: 26.5%;
+text-align: center;
 
 }
 .Request {
