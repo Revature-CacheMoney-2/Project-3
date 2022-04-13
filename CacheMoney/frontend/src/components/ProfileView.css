@@ -4,7 +4,6 @@
     align-self: center;
     border-top-style: double;
     border-style: double;
-    box-sizing: border-box;
     font-weight: lighter;
 }
 
@@ -15,13 +14,7 @@
     justify-content: center;
     text-align: center;
     color: #d3a940;
-    font: bolder;
-    font-family: "Arial Black";
-    font-size: xxx-large;
-    font-weight: lighter;
-    letter-spacing: 15px;
     line-height: 30px;
-    text-decoration: #d3a940;
     text-indent: each-line;
     text-transform: capitalize;
     vertical-align: 20px;
@@ -50,4 +43,14 @@
     text-indent: each-line;
     text-transform: capitalize;
     vertical-align: 20px;
+}
+
+#errorMessage{
+	color: #cc3040;
+	text-align: center;
+	font-size: 15px;
+}
+#securityMessage{
+	text-align: center;
+	font-size: 15px;
 }
