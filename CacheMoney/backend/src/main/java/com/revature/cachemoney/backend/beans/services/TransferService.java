@@ -33,7 +33,7 @@ public class TransferService {
     public Transfer save(Transfer transfer, Integer userId) throws ResponseStatusException {
         int sourceId = transfer.getSourceAccount().getAccountId();
         transfer.setSourceAccount(accountRepo.getById(sourceId));
-        if (transfer.getSourceAccount().getUser().getUserId() != userId) {
+        if (!transfer.getSourceAccount().getUser().getUserId().equals(userId)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "You can only transfer money from YOUR accounts");
         }
         int destId = transfer.getDestinationAccount().getAccountId();
