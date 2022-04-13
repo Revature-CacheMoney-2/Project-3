@@ -603,6 +603,12 @@ width: 48%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    float: right;
+
+}
+
+.transferListHeader {
+    display: inline;
 }
 
 
