@@ -1,4 +1,5 @@
 import "./css/App.css";
+import React from "react";
 import SplashView from "./components/SplashView.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SigninView from "./components/SigninView.js";
@@ -8,8 +9,6 @@ import MainPageView from "./components/MainPageView";
 import TransactionFilter from "./components/Transaction/TransactionFilter";
 
 function App() {
-
-
 	return (
 		<>
 			<Router>

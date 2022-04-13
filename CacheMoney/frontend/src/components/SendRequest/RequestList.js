@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 import config from "../../config";
 import store from "../../store/Store";
 import "./RequestList.css";
+import { toast } from "react-toastify";
 
 const RequestList = ({rerender, rerenderer}) => {
     const [requests, setRequests] = useState([]);
@@ -59,12 +60,28 @@ const RequestList = ({rerender, rerenderer}) => {
                 }
             })
             .then(() => {
-                // TODO put a toast.success here
+                toast.success('Transfer Request Accepted', {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
                 rerender();
             })
             .catch(() => {
-                // TODO put a toast.error here
-            })
+                toast.error('Failed to Accept Request', {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    })
+                })
         }
     }
 
@@ -77,12 +94,28 @@ const RequestList = ({rerender, rerenderer}) => {
                 }
             })
             .then(() => {
+                toast.success('Transfer Request Deleted', {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
                 rerender();
-                // TODO put a toast.success here
             })
             .catch(() => {
-                // TODO put a toast.error here
-            })
+                toast.error('Failed to Delete Request', {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    })
+                })
         }
     }
 
@@ -104,7 +137,7 @@ const RequestList = ({rerender, rerenderer}) => {
                     <p style= {{color: "black"}}>Memo/Description: {request.description}</p>
                     <p style={{color: "black"}}>Amount: ${request.amount}</p>
                     {
-                        (request.direction == "towards us")  ? 
+                        (request.direction === "towards us")  ? 
                             (
                                 <>
                                 <button onClick={onAccept(request.requestId)}>Accept Request</button>
@@ -116,8 +149,7 @@ const RequestList = ({rerender, rerenderer}) => {
                     }
                 </div>
             )    
-        })
-        }
+        })}
         </div>
     );
 }

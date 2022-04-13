@@ -15,9 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Service layer for Account requests.
+ * This is the service layer for Account requests.
  * 
- * @author Alvin Frierson, Cody Gonsowski, & Jeffrey Lor
+ * @author Alvin Frierson, Cody Gonsowski, and Jeffrey Lor
  */
 @Service
 public class AccountService {
@@ -121,7 +121,7 @@ public class AccountService {
      * Creates a transaction with a custom description associated with the deposit.
      * 
      * @param userId      to verify the User owns the Account
-     * @param transaction containing the accountId, the amount, & (optionally) a
+     * @param transaction containing the accountId, the amount, and (optionally) a
      *                    description
      * @return (true | false) based on deposit status
      */
@@ -177,7 +177,7 @@ public class AccountService {
      * withdrawal.
      * 
      * @param userId      to verify the User owns the Account
-     * @param transaction containing the accountId, the amount, & (optionally) a
+     * @param transaction containing the accountId, the amount, and (optionally) a
      *                    description
      * @return (true | false) based on withdrawal status
      */
@@ -236,7 +236,7 @@ public class AccountService {
      * @param userId          to verify the User owns the Account
      * @param sourceAccountId of Account to transfer from
      * @param destAccountId   of Account to transfer to
-     * @param transaction     containing description & amount
+     * @param transaction     containing description and amount
      * @return (true | false) based on transfer status
      */
     public Boolean transferBetweenAccountsOfOneUser(Integer userId, Integer sourceAccountId, Integer destAccountId,

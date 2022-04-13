@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("transfer")
 public class TransferController {
@@ -24,7 +25,6 @@ public class TransferController {
     }
 
     @GetMapping(value = "destination")
-    // TODO @RequireJwt
     public List<Transfer> findByDestinationUser(
             @RequestHeader(name = "token") String token,
             @RequestHeader(name = "userId") Integer userId) throws ResponseStatusException {
@@ -36,7 +36,6 @@ public class TransferController {
     }
 
     @GetMapping(value = "source")
-    // TODO @RequireJwt
     public List<Transfer> findBySourceUser(
             @RequestHeader(name = "token") String token,
             @RequestHeader(name = "userId") Integer userId) throws ResponseStatusException {
@@ -48,7 +47,6 @@ public class TransferController {
     }
 
     @PostMapping
-    // TODO @RequireJwt
     public Transfer saveTransfer(@RequestBody Transfer transfer,
                                  @RequestHeader(name = "token") String token,
                                  @RequestHeader(name = "userId") Integer userId) throws ResponseStatusException {

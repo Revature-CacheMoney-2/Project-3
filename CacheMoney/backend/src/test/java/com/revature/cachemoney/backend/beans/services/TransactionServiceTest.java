@@ -11,6 +11,7 @@ import com.revature.cachemoney.backend.beans.models.Account;
 import com.revature.cachemoney.backend.beans.models.Transaction;
 import com.revature.cachemoney.backend.beans.models.User;
 
+import dev.samstevens.totp.exceptions.QrGenerationException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,7 +50,7 @@ class TransactionServiceTest {
      * before each method test.
      */
     @BeforeEach
-    void populateLocalandDBData() {
+    void populateLocalandDBData() throws QrGenerationException {
         if (transactionService.getAllTransactions().size() != 0) {
             transactionService.deleteAllTransactions();
         }

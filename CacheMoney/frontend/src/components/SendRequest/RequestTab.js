@@ -7,6 +7,7 @@ import Request from "./Request";
 import RequestList from "./RequestList";
 import "./RequestTab.css";
 
+// TODO my rerenders aren't working anymore, figure out why and fix it
 const useRerenderer = () => {
     const [rerenderer, setRerenderer] = useState(false);
     return [rerenderer, () => {

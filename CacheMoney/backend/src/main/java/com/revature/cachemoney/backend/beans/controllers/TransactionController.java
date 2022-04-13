@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Controller to handle requests related to Transactions.
  * 
- * @author Alvin Frierson, Brian Gardner, Cody Gonsowski, & Jeffrey Lor
+ * @author Alvin Frierson, Brian Gardner, Cody Gonsowski, and Jeffrey Lor
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/transactions")
 public class TransactionController {
@@ -47,7 +48,7 @@ public class TransactionController {
 	 * @param userId        for current User
 	 * @param transactionId for User's Transaction
 	 * @return Transaction associated with the User
-	 * @throws JsonProcessingException
+	 * @throws JsonProcessingException this is thrown when there is an issue with the JSON string
 	 */
 	@GetMapping
 	@RequireJwt

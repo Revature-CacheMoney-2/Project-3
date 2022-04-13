@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * Annotation for noting which controller methods require a JWT.
  * 
- * @author Cody Gonsowski & Jeffrey Lor
+ * @author Cody Gonsowski and Jeffrey Lor
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

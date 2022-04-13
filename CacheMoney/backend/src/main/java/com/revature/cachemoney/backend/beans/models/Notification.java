@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 /**
+ * This class is for Notifications.
+ * Notifications are displayed on a user's account page, in the
+ * upper right-hand corner.
  * @author Mika Nelson, Dylan Wilson, Cullen Kuch, Max Hilken, Tyler Seufert
  */
 @NoArgsConstructor

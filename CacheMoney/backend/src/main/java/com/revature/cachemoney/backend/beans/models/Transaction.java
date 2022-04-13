@@ -65,7 +65,7 @@ public class Transaction {
 	/**
 	 *
 	 * ******************STRICTLY FOR TESTING PURPOSES*********************
-	 *
+	 * @return this will return the toString method
 	 * */
 	public String toStringWithoutDate() {
 		return "Transaction{" +

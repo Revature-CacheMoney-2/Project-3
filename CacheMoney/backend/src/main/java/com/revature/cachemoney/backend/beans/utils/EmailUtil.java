@@ -13,6 +13,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 /**
+ * This is a utility class for sending emails during password reset.
  * @author Mika Nelson, Dylan Wilson, Cullen Kuch, Max Hilken, Tyler Seufert
  */
 @Data
@@ -31,6 +32,10 @@ public class EmailUtil {
         return emailUtil;
     }
 
+    /**
+     * This method generates and sends an email to the User
+     * to reset their password.
+     */
     private EmailUtil() {
         properties = System.getProperties();
 

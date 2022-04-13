@@ -85,7 +85,6 @@ const Request = ({rerender}) => {
                 rerender();
             })
             .catch((error) => {
-                console.error(`Error: ${error}`)
                 toast.error('Request failed', {
                     position: "bottom-right",
                     autoClose: 2000,
@@ -104,6 +103,7 @@ const Request = ({rerender}) => {
             <h1 className="RequestFormHeader">
                 Make a Request
             </h1>
+
             <div className="Input">
             <label htmlFor="source-id">Source Account#:</label>
             <input id="source-id" type="number" min={0} step={1} max={2147483647} name="sourceAccountId" onChange={handleChange}/>
