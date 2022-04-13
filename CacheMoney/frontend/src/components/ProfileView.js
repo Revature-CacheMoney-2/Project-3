@@ -104,7 +104,7 @@ export default function ProfileView(){
                     </div>
                     <div className="container-child main-body">
                         <Routes>
-                            <Route path="username" element={<ProfileUsernameView />}> </Route>
+                            <Route path="username" element={<UsernameDisplay />}> </Route>
                             <Route path="password" element={<ResetPasswordView />}> </Route>
                             <Route path="userInfo" element={<ProfileUserInfoView />}> </Route>
                             <Route path="phone" element={<PhoneDisplay />}> </Route>

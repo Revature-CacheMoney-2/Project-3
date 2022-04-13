@@ -77,6 +77,10 @@ function SigninView() {
             payload: responseData.lastName,
           });
           userStore.dispatch({
+            type: "UPDATE_EMAIL",
+            payload: responseData.email,
+          });
+          userStore.dispatch({
             type: "UPDATE_MFA",
             payload: responseData.mfa,
           });

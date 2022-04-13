@@ -55,6 +55,7 @@ function userReducer(state = initialState, action) {
 				token: action.payload
 			};
 
+
 		case "UPDATE_MFA":
 			return {
 				...state,

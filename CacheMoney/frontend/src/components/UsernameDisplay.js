@@ -80,6 +80,7 @@ function UsernameDisplay(){
         }
       }
     return (
+        <div className="create-account-outer-container">
         <div className="create-account-inner-container">
                 <ToastContainer
                 position="top-center"
@@ -126,6 +127,7 @@ function UsernameDisplay(){
                   <label id='securityMessage'>{securityMessage}</label>
                 </div>
               </div>
+        </div>
     )
 }
 

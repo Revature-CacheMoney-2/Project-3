@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import userStore from "../store/Store.js";
 //import store from "../store/Store.js";
 import config from "../config";
@@ -25,10 +25,12 @@ export default function ProfileUserInfoView() {
         event.preventDefault();
         console.log("Test");
         if(validateInput()) {
+
             const body = JSON.stringify(userInfo);
             const headers = {'Content-Type': 'application/json', 'token': userData.token,
                 'userId': userData.userId}
             const url = config.url;
+            console.log(body);
             axios.patch(`${url}users/`, body, {headers: headers}).then((response) => {
                 console.log(response);
                 userStore.dispatch({
@@ -50,7 +52,7 @@ export default function ProfileUserInfoView() {
     function validateInput() {
         const namePattern = /^[a-zA-Z][a-zA-Z -]+[a-zA-Z]$/;
         if (!namePattern.test(userInfo.firstName)) {
-         return false;
+            return false;
             // registrationError(
             //     "firstname",
             //     "firstname-span",
@@ -60,7 +62,7 @@ export default function ProfileUserInfoView() {
             // );
         }
         if (!namePattern.test(userInfo.lastName)) {
-           return false;
+            return false;
             // registrationError(
             //     "lastname",
             //     "lastname-span",
@@ -74,7 +76,7 @@ export default function ProfileUserInfoView() {
             /^[a-zA-Z0-9._-]+@{1}[a-zA-Z0-9-_]+[.]{1}[a-zA-Z0-9]+[a-zA-Z_.-]*$/;
         if (!emailPattern.test(userInfo.email)) {
             console.log("email problem");
-           return false;
+            return false;
             // registrationError(
             //     "email",
             //     "email-span",
@@ -87,23 +89,32 @@ export default function ProfileUserInfoView() {
     }
 
     return (
-        <div>
-            <div>
-                <div>
-                    First name:
-                    <input type='text' name='firstName' onChange={userInfoChanged} value={userInfo.firstName}  />
-                </div>
-                <div>
-                    Last name:
-                    <input type='text' name='lastName' onChange={userInfoChanged} value={userInfo.lastName} />
-                </div>
-            </div>
-            <div>
-                Email:
-                <input type='text' name='email' onChange={userInfoChanged} value={userInfo.email} />
-            </div>
-            <div>
-                <button onClick={submit} >Update</button>
+        <div className="create-account-outer-container">
+            <div className="create-account-inner-container">
+                <div className="account_create_form" style={{height: '420px'}}>
+
+
+                            <p className="account_create_form_header">Update Info</p>
+                   <form>
+                        <div className="account_create_name">
+                            <label >First name:</label>
+                            <input type='text' name='firstName' onChange={userInfoChanged} value={userInfo.firstName}  />
+                        </div>
+                        <div className="account_create_name">
+                            <label >Last name:</label >
+                            <input type='text' name='lastName' onChange={userInfoChanged} value={userInfo.lastName} />
+                        </div>
+
+
+                    <div className="account_create_name">
+                        <label >Email:</label>
+                        <input type='text' name='email' onChange={userInfoChanged} value={userInfo.email} />
+                    </div>
+
+                        <button  className="account_create_submit_button" onClick={submit} >Update</button>
+                   </form>
+                   </div>
+
             </div>
         </div>
     );

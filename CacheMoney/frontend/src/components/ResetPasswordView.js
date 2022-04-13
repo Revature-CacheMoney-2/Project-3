@@ -15,7 +15,7 @@ import ReactDOM from "react-dom";
 
 
 function registrationError(password1, password1Span, passwordsDoNotMatch) {
-    
+
 }
 
 function ResetPasswordView(){
@@ -86,17 +86,18 @@ function ResetPasswordView(){
                 "password1",
                 "password1-span",
                 "Passwords do not match.")
-        return false;
+            return false;
         }
-    return true;
+        return true;
     }
     return (
         <div className="create-account-outer-container">
             <div className="create-account-inner-container">
-                <div className="account_create_form">
-                    <p className="account_create_form_header">Reset Password</p>
+                <div className="account_create_form" style={{height: '420px'}}>
+                    <div>
+                        <p className="account_create_form_header">Reset Password</p>
 
-                    <form>
+
                         <div className="account_create_name">
                             <label htmlFor="account_name">old password</label>
                             <input
@@ -127,17 +128,19 @@ function ResetPasswordView(){
                             />
 
                         </div>
-                    </form>
 
-                    <button
-                        className="account_create_submit_button"
-                        type="button"
-                        name="submit"
-                        id="create-new-account"
-                        onClick={ResetPassword}
-                    >
-                        Submit
-                    </button>
+
+                        <button
+                            className="account_create_submit_button"
+                            type="button"
+                            name="submit"
+                            id="create-new-account"
+                            onClick={ResetPassword}
+                        >
+                            Submit
+                        </button>
+
+                    </div>
                 </div>
             </div>
         </div>
