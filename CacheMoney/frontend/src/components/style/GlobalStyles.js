@@ -509,6 +509,7 @@ tr:nth-child(even) {
     align-items: center;
     padding-top: .4%;
     padding-bottom: 3%;
+    font-size: 15px;
 }
 
 .RequestFormHeader {
@@ -535,23 +536,28 @@ tr:nth-child(even) {
 .RequestListHeaderContainer {
 background-color: ${({ theme }) => theme.shadow};
 border-top-right-radius: 25px;
-width: 26.5%;
+width: 30%;
 text-align: center;
 
 }
 .Request {
     color: ${({ theme }) => theme.text};
     border-top: 1px solid ${({ theme }) => theme.shadow};
+    border-bottom: 2px solid;
+    border-color: black;
     background-color: ${({ theme }) => theme.gentle};
     /*border: 3px solid ${({ theme }) => theme.shadow};*/
     /*box-shadow: -8px 8px  ${({ theme }) => theme.shadow};border: 1px solid ${({ theme }) => theme.shadow};*/
-    border-bottom-left-radius: 8px;
     background-color: ${({ theme }) => theme.gentle};
     display: flex;
     flex-direction: column;
     box-sizing: content-box;
     font-size: 15px;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-bottom: .2%;
 }
+
 
 /* Request list styling end */
 
