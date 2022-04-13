@@ -176,9 +176,9 @@ function RegisterView() {
       password: formData.password1,
       mfa: formData.mfa,
     };
-		axios
-			.post(`${url}users/`, newUser)
-			.then((response) => {
+    axios
+      .post(`${url}users/`, newUser)
+      .then((response) => {
         responseStatus = response.status;
         responseData = response.data;
         if (responseStatus === 200) {
