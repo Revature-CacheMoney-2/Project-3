@@ -26,6 +26,11 @@ function MainPageView2() {
 		navigate("/");
 	};
 
+	const toProfile = (event) => {
+
+		navigate("/profile");
+	};
+
 	const [theme, themeToggler, mountedComponent] = useDarkMode();
 	const themeMode = theme === "light" ? lightTheme : darkTheme;
 
@@ -33,7 +38,8 @@ function MainPageView2() {
 
 	const updateMainPageContent = (event) => {
 		setPage(event.target.id);
-		mainPageContentComponent(event.target.id);
+		//mainPageContentComponent(event.target.id);
+		mainPageContentComponent(page);
 	};
 
 	const mainPageContentComponent = () => {
@@ -60,10 +66,15 @@ function MainPageView2() {
 						</span>
 					</div>
 					<div className="main-upper-buttons">
+						<button id="profile" onClick={toProfile}>
+							{" "}
+							Profile
+						</button>
 						<button id="logout-button" onClick={handleLogout}>
 							{" "}
 							Log Out
 						</button>
+
 
 						<Toggle
 							id="main-theme-button"
@@ -73,12 +84,11 @@ function MainPageView2() {
 					</div>
 				</div>
 
-				{/* <Navigation /> */}
+
 
 				<NavBar handleClick={updateMainPageContent} />
 
 				<div className="main-page-content">
-					{/******* Insert body content here ********/}
 					{mainPageContentComponent()}
 				</div>
 

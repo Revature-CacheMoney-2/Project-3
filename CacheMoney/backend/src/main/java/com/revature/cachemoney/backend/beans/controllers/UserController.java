@@ -9,7 +9,9 @@ import com.revature.cachemoney.backend.beans.models.User;
 import com.revature.cachemoney.backend.beans.security.JwtUtil;
 import com.revature.cachemoney.backend.beans.services.UserService;
 
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
  * 
  * @author Alvin Frierson, Brian Gardner, Cody Gonsowski, & Jeffrey Lor
  */
+@CrossOrigin
 @RestController
 @RequestMapping("users")
 public class UserController {
@@ -82,10 +85,12 @@ public class UserController {
      */
     @PatchMapping
     @RequireJwt
-    public Boolean updateUser(@RequestHeader(name= "token") String token, @RequestHeader(name="userId") Integer userId,
-                              @RequestHeader(name="oldPassword", required = false) String oldPassword, @RequestBody User user) {
+    public ResponseEntity<String> updateUser(@RequestHeader(name= "token") String token, @RequestHeader(name="userId") Integer userId,
+                                             @RequestHeader(name="oldPassword", required = false) String oldPassword, @RequestBody User user) throws JsonProcessingException {
         user.setUserId(userId);
-        return userService.patchUser(user, oldPassword);
+        boolean result = userService.patchUser(user, oldPassword);
+        return ResponseEntity.ok().body(mapper.writeValueAsString(result));
+
     }
 
     /**
@@ -154,4 +159,21 @@ public class UserController {
 
         return ResponseEntity.ok().body(mapper.writeValueAsString(userService.getAccountsByUserId(userId)));
     }
+
+
+
+    // PATCH ATTEMPT
+   /* @PatchMapping("/profile/{resetpassword}")
+    public ResponseEntity<User> updateUserPartially(
+            @PathVariable(value = "id") Long userId,
+            @RequestBody User userDetails) throws Throwable {
+        SimpleJpaRepository userRepository = null;
+        User user = (User) userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found on :: "+ userId));
+
+        user.setPassword(userDetails.getPassword());
+        user.setUpdatedAt();
+        final User updatedUser = (User) userRepository.save(user);
+        return ResponseEntity.ok(updatedUser);
+    } */
 }

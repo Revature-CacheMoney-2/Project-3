@@ -18,7 +18,7 @@ function NavBar(props) {
 					onClick={props.handleClick}
 					id="create-account"
 				>
-					Create Account
+					Open Account
 				</span>
 			</a>
 			<a href="#">
@@ -39,17 +39,6 @@ function NavBar(props) {
 					Send Money
 				</span>
 			</a>
-			<div className="settings">
-				<a href="#">
-					<span
-						className="navigation-link"
-						onClick={props.handleClick}
-						id="settings"
-					>
-						Settings
-					</span>
-				</a>
-			</div>
 		</div>
 	);
 }

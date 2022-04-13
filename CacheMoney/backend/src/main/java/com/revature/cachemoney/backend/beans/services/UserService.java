@@ -2,6 +2,7 @@ package com.revature.cachemoney.backend.beans.services;
 
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.ignoreCase;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -17,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.*;
 
 /**
  * Service layer for User requests.
@@ -41,7 +44,23 @@ public class UserService {
         this.accountRepo = accountRepo;
         this.passwordEncoder = passwordEncoder;
     }
+    @Entity
+    public class PasswordResetToken {
 
+        private static final int EXPIRATION = 60 * 24;
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        private Long id;
+
+        private String token;
+
+        @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+        @JoinColumn(nullable = false, name = "user_id")
+        private User user;
+
+        private Date expiryDate;
+    }
     /**
      * Service method to GET *ALL* Users.
      * 
@@ -73,7 +92,6 @@ public class UserService {
             try {
                 // encodes the password for database storage
                 user.setPassword(passwordEncoder.passwordEncoder().encode(user.getPassword()));
-
                 // changing to lowercase so that two usernames that are the same with different cases won't both be accepted
                 user.setEmail(user.getEmail().toLowerCase());
                 user.setUsername(user.getUsername().toLowerCase());
@@ -121,8 +139,11 @@ public class UserService {
         if(user.getPassword() != null) {
             // Checks if the old password provided is the same as the one stored in the database.
             // If not the update fails.
-            if(passwordEncoder.passwordEncoder().encode(oldPassword) != userToUpdate.getPassword())
+
+            System.out.println(oldPassword);
+            if(passwordEncoder.passwordEncoder().matches(user.getPassword(),userToUpdate.getPassword()))
             {
+                System.out.println("SpotOne");
                 return false;
             }
             userToUpdate.setPassword(user.getPassword());
@@ -142,6 +163,7 @@ public class UserService {
             try {
                 userRepo.save(userToUpdate);
             } catch(Exception e) {
+                System.out.println(e.getMessage());
                 // Catch is for any errors updating the entry in the database.
                 // The most likely causes would be that the username or email
                 // already exist in the database. This means that the entire
@@ -150,6 +172,7 @@ public class UserService {
             }
             return true;
         } else {
+            System.out.println("SpotTwo");
             // Update fails if the credentials are invalid.
             return false;
         }

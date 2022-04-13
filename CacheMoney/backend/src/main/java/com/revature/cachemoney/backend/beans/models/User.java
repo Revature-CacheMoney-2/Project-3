@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Date;
+
 /**
  * Model containing information regarding a User account.
  */
@@ -44,4 +46,7 @@ public class User {
 		this.password = password;
 		this.username = username;
 	}
+
+    public void setUpdatedAt() {
+    }
 }
