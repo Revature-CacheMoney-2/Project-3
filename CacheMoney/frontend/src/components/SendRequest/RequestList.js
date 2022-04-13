@@ -132,19 +132,19 @@ const RequestList = ({rerender, rerenderer}) => {
             return(
                 <div key={i} className="Request">
                     
-                    <p style={{color: "black"}}>sourceAccountId: {request.sourceAccount.accountId}</p>
-                    <p style = {{color: " black"}}>destinationAccountId: {request.destinationAccount.accountId}</p>
-                    <p style= {{color: "black"}}>description: {request.description}</p>
+                    <p style={{color: "black"}}>Source Account#: {request.sourceAccount.accountId}</p>
+                    <p style = {{color: " black"}}>Destination Account#: {request.destinationAccount.accountId}</p>
+                    <p style= {{color: "black"}}>Memo/Description: {request.description}</p>
                     <p style={{color: "black"}}>Amount: ${request.amount}</p>
                     {
                         (request.direction === "towards us")  ? 
                             (
                                 <>
-                                <button onClick={onAccept(request.requestId)}>Accept Request</button>
-                                <button onClick={onDecline(request.requestId)}>Decline Request</button>
+                                <button onClick={onAccept(request.requestId)}id="submit-request"className="CancelRequest">Accept Request</button>
+                                <button onClick={onDecline(request.requestId)}id="submit-request"className="CancelRequest">Decline Request</button>
                                 </>
                             ) : (
-                                <button onClick={onDecline(request.requestId)}>Cancel Request</button>
+                                <button onClick={onDecline(request.requestId)} id="submit-request" className="CancelRequest">Cancel Request</button>
                             )
                     }
                 </div>
