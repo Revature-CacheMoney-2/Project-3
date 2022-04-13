@@ -59,7 +59,7 @@ const TransferList = (props) => {
         <div className="transferList">
             <div className="transferListHeaderContainer">
                 <h1 className="transferListHeader">
-                Your transfers
+                Your Transfers
                 </h1>
             </div>
             
