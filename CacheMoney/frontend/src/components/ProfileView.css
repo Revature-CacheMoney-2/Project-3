@@ -16,11 +16,11 @@
     text-align: center;
     color: #d3a940;
     font: bolder;
-    font-family: Algerian;
-    font-size: xxxxx-large;
+    font-family: "Arial Black";
+    font-size: xxx-large;
     font-weight: lighter;
-    letter-spacing: 20px;
-    line-height: 20px;
+    letter-spacing: 15px;
+    line-height: 30px;
     text-decoration: #d3a940;
     text-indent: each-line;
     text-transform: capitalize;
@@ -41,7 +41,7 @@
     text-align: center;
     color: #d3a940;
     font: bolder;
-    font-family: Algerian;
+    font-family: bold;
     font-size: xx-large;
     font-weight: lighter;
     letter-spacing: 20px;

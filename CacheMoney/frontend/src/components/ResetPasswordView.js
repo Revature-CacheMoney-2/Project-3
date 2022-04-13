@@ -85,28 +85,57 @@ function ResetPasswordView(){
         }
     return true;
     }
-
-    let onSubmitHandler;
     return (
-        <form> {onSubmitHandler}
-            <div className={oldPassword + ' input-box'}>
-                <label htmlFor="oldpassword">Old Password</label>
-                <input type="text" id="oldpassword" onChange={oldPasswordChanged}/>
-            </div>
-            <div className={newPassword + ' input-box'}>
-                <label htmlFor="newpassword">New Password</label>
-                <input type="text" id="newpassword" onChange={newPasswordChanged}/>
-            </div>
-            <div className={confirmPassword + ' input-box'}>
-                <label htmlFor="confirmpassword">Confirm Password</label>
-                <input type="text" id="confirmpassword" onChange={confirmPasswordChanged}/>
-            </div>
-            <div className="form-actions">
-                <h6>
-                <button onClick={ResetPassword}>Submit</button></h6>
-            </div>
-        </form>
+        <div className="create-account-outer-container">
+            <div className="create-account-inner-container">
+                <div className="account_create_form">
+                    <p className="account_create_form_header">Reset Password</p>
 
+                    <form>
+                        <div className="account_create_name">
+                            <label htmlFor="account_name">old password</label>
+                            <input
+                                type="text"
+                                id="account_name"
+                                name="name"
+                                onChange={oldPasswordChanged}
+                            />
+                        </div>
+
+                        <div className="account_create_name">
+                            <label htmlFor="account_name">new password</label>
+                            <input
+                                type="text"
+                                id="account_name"
+                                name="name"
+                                onChange={newPasswordChanged}
+                            />
+                        </div>
+
+                        <div className="account_create_name">
+                            <label htmlFor="account_name">confirm password</label>
+                            <input
+                                type="text"
+                                id="account_name"
+                                name="name"
+                                onChange={confirmPasswordChanged}
+                            />
+
+                        </div>
+                    </form>
+
+                    <button
+                        className="account_create_submit_button"
+                        type="button"
+                        name="submit"
+                        id="create-new-account"
+                        onClick={ResetPassword}
+                    >
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
     );
 }
 

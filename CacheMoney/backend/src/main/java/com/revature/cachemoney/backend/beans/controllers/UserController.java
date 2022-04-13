@@ -162,7 +162,7 @@ public class UserController {
 
 
 
-    // PATCH ATTEMPT
+    // PATCH ATTEMPT, for future Cohorts
    /* @PatchMapping("/profile/{resetpassword}")
     public ResponseEntity<User> updateUserPartially(
             @PathVariable(value = "id") Long userId,
