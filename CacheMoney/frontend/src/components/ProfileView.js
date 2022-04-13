@@ -18,13 +18,11 @@ import ResetPasswordView from "./ResetPasswordView";
 import SignInDisplay from "./SignInDisplay";
 import ResetPasswordDisplay from "./ResetPasswordDisplay";
 import './ProfileView.css';
+import ProfileUsernameView from "./ProfileUsernameView";
+import ProfileUserInfoView from "./ProfileUserInfoView";
 
 
-function setPage(id) {
-
-}
-
-function ProfileView(){
+export default function ProfileView(){
     const navigate = useNavigate();
 
     let userData = userStore.getState().userReducer;
@@ -47,29 +45,29 @@ function ProfileView(){
         navigate("/resetpassword");
 
     };
-    const updateProfilePageContent = (event) => {
-        setPage(event.target.id);
-        profilePageContentComponent(event.target.id);
-    };
-
-
-    const profilePageContentComponent = () => {
-        let page;
-        switch (page) {
-            case "sign-in":
-                return <SignInDisplay handleClick={updateProfilePageContent} />;
-            case "address":
-                return <AddressDisplay handleClick={updateProfilePageContent} />;
-            case "phone":
-                return <PhoneDisplay handleClick={updateProfilePageContent} />;
-            case "email":
-                return <EmailDisplay handleClick={updateProfilePageContent} />;
-            case "reset password":
-                return <EmailDisplay handleClick={updateProfilePageContent} />;
-            default:
-                return <DefaultDisplay handleClick={updateProfilePageContent} />;
-        }
-    };
+    // const updateProfilePageContent = (event) => {
+    //     setPage(event.target.id);
+    //     profilePageContentComponent(event.target.id);
+    // };
+    //
+    //
+    // const profilePageContentComponent = () => {
+    //     let page;
+    //     switch (page) {
+    //         case "sign-in":
+    //             return <SignInDisplay handleClick={updateProfilePageContent} />;
+    //         case "address":
+    //             return <AddressDisplay handleClick={updateProfilePageContent} />;
+    //         case "phone":
+    //             return <PhoneDisplay handleClick={updateProfilePageContent} />;
+    //         case "email":
+    //             return <EmailDisplay handleClick={updateProfilePageContent} />;
+    //         case "reset password":
+    //             return <EmailDisplay handleClick={updateProfilePageContent} />;
+    //         default:
+    //             return <DefaultDisplay handleClick={updateProfilePageContent} />;
+    //     }
+    // };
 
 
     const [theme, themeToggler, mountedComponent] = useDarkMode();
@@ -91,7 +89,6 @@ function ProfileView(){
                         Profile
                     </div>
                     <div className="main-upper-buttons">
-                        <button id="logout-button" >
                         <button id="logout-button" onClick={handleLogout}>
                             {" "}
                             Log Out
@@ -107,9 +104,9 @@ function ProfileView(){
                     </div>
                     <div className="container-child main-body">
                         <Routes>
-                            <Route path="username" element={<UsernameDisplay />}> </Route>
+                            <Route path="username" element={<ProfileUsernameView />}> </Route>
                             <Route path="password" element={<ResetPasswordView />}> </Route>
-                            <Route path="address" element={<AddressDisplay />}> </Route>
+                            <Route path="userInfo" element={<ProfileUserInfoView />}> </Route>
                             <Route path="phone" element={<PhoneDisplay />}> </Route>
                             <Route path="email" element={<EmailDisplay />}> </Route>
                         </Routes>
@@ -120,5 +117,3 @@ function ProfileView(){
         </ThemeProvider>
     );
 }
-
-export default ProfileView;

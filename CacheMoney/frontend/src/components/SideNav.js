@@ -26,13 +26,13 @@ function SideNav(props) {
             </button>
 
             <button className="sidenav-button">
-                <Link to="/profile/address"
+                <Link to="/profile/userInfo"
                       className="page-link"
 
-                      id="address"
+                      id="userInfo"
 
                 >
-                    Address
+                    User Info
                 </Link>
             </button>
 

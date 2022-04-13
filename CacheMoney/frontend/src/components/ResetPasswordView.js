@@ -45,15 +45,20 @@ function ResetPasswordView(){
     const [theme, themeToggler, mountedComponent] = useDarkMode();
     const themeMode = theme === "light" ? lightTheme : darkTheme;
 
-    function ResetPassword(){
+    function ResetPassword(event){
+        event.preventDefault();
+        console.log("Method");
         if (validation()){
+            console.log("test");
             const body = JSON.stringify({password: newPassword});
             const headers = {'Content-Type': 'application/json', 'token': store.getState().userReducer.token,
                 'userId': store.getState().userReducer.userId, "oldPassword": oldPassword}
-
+            console.log(store.getState().userReducer.userId);
             axios.patch(`${url}users`, body, {headers: headers}).then((response)=> {
 
                 console.log(response);
+            }).catch((error) => {
+                console.log(error);
             })
         }
     }

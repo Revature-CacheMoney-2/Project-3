@@ -7,6 +7,7 @@ const initialState = {
 	username: "",
 	firstName: "",
 	lastName: "",
+	emai: "",
 	token: ""
 };
 
@@ -40,6 +41,12 @@ function userReducer(state = initialState, action) {
 			return {
 				...state,
 				lastName: action.payload
+			};
+
+		case "UPDATE_EMAIL":
+			return {
+				...state,
+				email: action.payload
 			};
 
 		case "UPDATE_TOKEN":
