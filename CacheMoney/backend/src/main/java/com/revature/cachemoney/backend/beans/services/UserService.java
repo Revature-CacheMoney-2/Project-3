@@ -53,23 +53,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
         this.totpManager = totpManager;
     }
-    @Entity
-    public class PasswordResetToken {
 
-        private static final int EXPIRATION = 60 * 24;
-
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        private Long id;
-
-        private String token;
-
-        @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-        @JoinColumn(nullable = false, name = "user_id")
-        private User user;
-
-        private Date expiryDate;
-    }
     /**
      * Service method to GET *ALL* Users.
      * 
@@ -89,7 +73,7 @@ public class UserService {
         User optionalUser = userRepo.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User with id:"+
                         userId+" does not exist in the DataBase."));
-        optionalUser.setPassword("");
+        //optionalUser.setPassword("");
         return Optional.of(optionalUser);
     }
 
@@ -189,12 +173,13 @@ public class UserService {
         if(user.getUsername() != null) {
             userToUpdate.setUsername(user.getUsername().toLowerCase());
         }
+        System.out.println(user.getPassword());
         if(user.getPassword() != null) {
             // Checks if the old password provided is the same as the one stored in the database.
             // If not the update fails.
 
             System.out.println(oldPassword);
-            if(passwordEncoder.passwordEncoder().matches(user.getPassword(),userToUpdate.getPassword()))
+            if(passwordEncoder.matches(user.getPassword(),userToUpdate.getPassword()))
             {
                 System.out.println("SpotOne");
                 return false;
@@ -202,17 +187,19 @@ public class UserService {
             userToUpdate.setPassword(user.getPassword());
             // Encodes the new password so that way the correct entry can be entered in the database.
             // Both if the password is updated as well as if it does not.
-            user.setPassword(passwordEncoder.passwordEncoder().encode(user.getPassword()));
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
         } else {
             // Stores the encrypted old password in the passed in user object and sets the
             // password to a dummy one. This is done to pass the validation method if the
             // password is not being updated.
             user.setPassword(userToUpdate.getPassword());
+            System.out.println(user.getPassword());
             userToUpdate.setPassword("dummyinfo");
         }
         if(areCredentialsValid(userToUpdate)) {
             // Places the correct encrypted password to be placed in the database.
             userToUpdate.setPassword(user.getPassword());
+            //System.out.println(userToUpdate.getPassword());
             try {
                 userRepo.save(userToUpdate);
             } catch(Exception e) {

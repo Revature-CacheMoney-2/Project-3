@@ -160,6 +160,7 @@ public class UserController {
         // make sure the user is valid
         if (tempUser != null) {
             if(tempUser.isMfa()){
+                System.out.println("2fa");
                 return ResponseEntity.ok().body(mapper.writeValueAsString(tempUser));
             }
             else {

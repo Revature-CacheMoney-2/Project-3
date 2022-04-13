@@ -3,10 +3,7 @@ package com.revature.cachemoney.backend.beans.models;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 
@@ -42,7 +39,7 @@ public class User {
 	@Column(name = "password", nullable = false)
 	private String password;
 
-	@Column(nullable = false, columnDefinition = "bit default 0")
+	@Column(nullable = false)
 	private boolean mfa;
 
 	@Column
