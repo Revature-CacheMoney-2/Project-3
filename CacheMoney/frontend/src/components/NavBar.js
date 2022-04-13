@@ -112,13 +112,8 @@ function NavBar(props) {
 				<span
 					className="navigation-link"
 					onClick={props.handleClick}
-<<<<<<< HEAD
 					id="send-request">
 					Transfer Money
-=======
-					id="send-request"			>
-					Send/Request Money
->>>>>>> parent of e9c9145 (Revert "Send request sebastian")
 				</span>
 			</a>
 			<a href="#">
