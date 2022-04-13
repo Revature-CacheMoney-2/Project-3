@@ -504,22 +504,29 @@ tr:nth-child(even) {
     flex-direction: column;
     box-sizing: content-box;
     width: 50%;
-    height: 100%;
-    border-top-left-radius: 25px;
+    height: 110%;
+    border-top-left-radius: 4px;
+    align-items: center;
+    padding-top: .4%;
+    padding-bottom: 3%;
 }
 
 .RequestFormHeader {
     background-color: ${({ theme }) => theme.shadow};
     height:20px;
     width:200%;
+    padding-left: 20%;
+    padding-left: 5px;
     border-top-left-radius: 8px;
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
     background-size: contain;
+    padding-top: 4%;
     padding-bottom: 9%;
     background-repeat: no-repeat;
     text-align: center;
+    font-weight: bold;
 }
 
 /* request styling end */
