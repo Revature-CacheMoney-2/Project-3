@@ -251,14 +251,14 @@ return (
                       ></span>
                     </label>
                       <input
-												type="text"
-												name="firstName"
-												className="reg-input-box"
-												id="firstname"
-												onChange={handleChange}
-												required
-											/>
-										</div>
+			type="text"
+			name="firstName"
+			className="reg-input-box"
+			id="firstname"
+			onChange={handleChange}
+			required
+		      />
+		    </div>
 
                     <div id="box-R" className="reg-name-box">
                       <label htmlFor="lastName" id="label-R">
