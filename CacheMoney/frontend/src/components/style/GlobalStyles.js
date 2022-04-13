@@ -510,6 +510,7 @@ tr:nth-child(even) {
     padding-top: .4%;
     padding-bottom: 3%;
     font-size: 15px;
+    font-weight: bold;
 }
 
 .RequestFormHeader {
@@ -554,6 +555,7 @@ font-size: 15px;
     flex-direction: column;
     box-sizing: content-box;
     font-size: 15px;
+    font-weight: bold;
     padding-left: 2%;
     padding-right: 2%;
     margin-bottom: .2%;
