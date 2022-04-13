@@ -196,36 +196,4 @@ class AccountControllerTest {
         response = accountController.withdraw("test", user.getUserId(), transaction);
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
-
-    /**
-     * Method test to check if transfer if possible
-     * when criteria are met.
-     */
-    @Test
-    void transfer() {
-        // new Transfer creation
-        Transfer sourceTransfer = new Transfer();
-
-        // mocking accountService to return true
-        when(accountService.transferBetweenAccountsOfOneUser(
-                user.getUserId(), sourceTransfer.getSourceAccountId(),
-                sourceTransfer.getDestinationAccountId(),
-                sourceTransfer.getTransaction()))
-                .thenReturn(true);
-
-        // Checking response's http status
-        ResponseEntity<String> response = accountController.transfer("test", user.getUserId(), sourceTransfer);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-
-        // mocking accountService to return false
-        when(accountService.transferBetweenAccountsOfOneUser(
-                user.getUserId(), sourceTransfer.getSourceAccountId(),
-                sourceTransfer.getDestinationAccountId(),
-                sourceTransfer.getTransaction()))
-                .thenReturn(false);
-
-        // Checking response's http status
-        response = accountController.transfer("test", user.getUserId(), sourceTransfer);
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
-    }
 }

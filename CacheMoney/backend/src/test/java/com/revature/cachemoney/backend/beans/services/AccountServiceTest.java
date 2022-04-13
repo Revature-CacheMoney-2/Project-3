@@ -17,6 +17,7 @@ import com.revature.cachemoney.backend.beans.models.User;
 import com.revature.cachemoney.backend.beans.repositories.AccountRepo;
 import com.revature.cachemoney.backend.beans.repositories.TransactionRepo;
 
+import dev.samstevens.totp.exceptions.QrGenerationException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -174,7 +175,7 @@ class AccountServiceTest {
         // mocking repo to return a vlid account and an empty list of transactions
         when(accountRepo.findById(validAccounts.get(0).getAccountId()))
                 .thenReturn(Optional.of(validAccounts.get(0)));
-        when(transactionRepo.findByAccount(validAccounts.get(0))).thenReturn(new LinkedList<Transaction>());
+        when(transactionRepo.findByAccount(validAccounts.get(0))).thenReturn(new LinkedList<>());
 
         // asserting that the output equals an empty transaction list.
         assertEquals(new LinkedList<Transaction>(), accountService.getTransactionsById(
@@ -365,7 +366,7 @@ class AccountServiceTest {
          * a valid user must be in database, so it's persisted here.
          */
         @BeforeEach
-        void populateDB() {
+        void populateDB() throws QrGenerationException {
             if (userService.getAllUsers().size() != 0) {
                 if (accountService.getAllAccounts().size() != 0) {
                     accountService.deleteAllAccounts();

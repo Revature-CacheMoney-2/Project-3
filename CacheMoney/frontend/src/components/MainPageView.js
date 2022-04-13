@@ -10,8 +10,10 @@ import Toggle from "./style/Toggle";
 import { lightTheme, darkTheme } from "./style/Themes";
 import CreateAccount from "./Account/CreateAccount.js";
 import AccountDisplay from "./Account/AccountDisplay.js";
+import RequestTab from "./SendRequest/RequestTab.js";
+import TransferTab from "./SendRequest/TransferTab.js";
 
-function MainPageView2() {
+function MainPageView() {
 	const navigate = useNavigate();
 	let userData = userStore.getState().userReducer;
 
@@ -38,8 +40,7 @@ function MainPageView2() {
 
 	const updateMainPageContent = (event) => {
 		setPage(event.target.id);
-		//mainPageContentComponent(event.target.id);
-		mainPageContentComponent(page);
+		mainPageContentComponent(event.target.id);
 	};
 
 	const mainPageContentComponent = () => {
@@ -49,6 +50,10 @@ function MainPageView2() {
 			case "create-account":
 				return <CreateAccount handleClick={updateMainPageContent} />;
 			// Add new cases here to add more navbar links
+			case "send-request":
+				return <TransferTab/>;
+			case "request-tab":
+				return <RequestTab/>;
 			default:
 				return <AccountDisplay />;
 		}
@@ -84,11 +89,12 @@ function MainPageView2() {
 					</div>
 				</div>
 
-
+				{/* <Navigation /> */}
 
 				<NavBar handleClick={updateMainPageContent} />
 
 				<div className="main-page-content">
+					{/******* Insert body content here ********/}
 					{mainPageContentComponent()}
 				</div>
 
@@ -98,4 +104,4 @@ function MainPageView2() {
 	);
 }
 
-export default MainPageView2;
+export default MainPageView;

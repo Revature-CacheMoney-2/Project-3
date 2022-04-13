@@ -7,8 +7,8 @@ const initialState = {
 	username: "",
 	firstName: "",
 	lastName: "",
-	emai: "",
-	token: ""
+	token: "",
+	mfa: false
 };
 
 
@@ -53,6 +53,12 @@ function userReducer(state = initialState, action) {
 			return {
 				...state,
 				token: action.payload
+			};
+
+		case "UPDATE_MFA":
+			return {
+				...state,
+				mfa: action.payload
 			};
 
 		default:

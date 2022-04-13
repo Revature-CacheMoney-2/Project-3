@@ -10,7 +10,7 @@ import CurrencyFormat from "react-currency-format";
 
 function TransactionTable(props) {
 	// local transaction state
-	const [transactions, getTransactions] = useState([]);
+	const [transactions, setTransactions] = useState([]);
 
 	// url
 	const url = config.url;
@@ -29,7 +29,7 @@ function TransactionTable(props) {
 	// effect hook
 	useEffect(() => {
 		getAllTransactions();
-	});
+	}, []);
 
 	// retrieve all transactions based on user's account's id
 	const getAllTransactions = () => {
@@ -47,7 +47,7 @@ function TransactionTable(props) {
 			)
 			.then((response) => {
 				const allTransactions = response.data;
-				getTransactions(allTransactions);
+				setTransactions(allTransactions);
 			})
 			.catch((error) => console.error(`Error: ${error}`));
 	};

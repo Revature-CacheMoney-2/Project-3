@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Deposit from "./Deposit.js";
 import Withdraw from "./Withdraw.js";
-import Transfer from "./Transfer.js";
-import store from "../../store/Store.js";
 
 function AdditionalActions(props) {
 	const [submenu, setSubMenu] = useState("");
@@ -13,8 +11,6 @@ function AdditionalActions(props) {
 				return <Deposit doTransactionDone={props.doTransactionDone} />;
 			case "withdraw":
 				return <Withdraw doTransactionDone={props.doTransactionDone} />;
-			case "transfer":
-				return <Transfer doTransactionDone={props.doTransactionDone} />;
 			default:
 				return;
 		}
@@ -42,13 +38,6 @@ function AdditionalActions(props) {
 					onClick={handleOptionSelection}
 				>
 					Withdraw
-				</button>
-				<button
-					className="account-option"
-					value="transfer"
-					onClick={handleOptionSelection}
-				>
-					Transfer
 				</button>
 			</div>
 			<div className="additional-options-content">

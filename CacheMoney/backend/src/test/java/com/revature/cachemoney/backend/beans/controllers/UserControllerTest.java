@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.cachemoney.backend.beans.security.payload.MfaResponse;
 import com.revature.cachemoney.backend.beans.models.Account;
 import com.revature.cachemoney.backend.beans.models.User;
 import com.revature.cachemoney.backend.beans.security.JwtUtil;
@@ -68,6 +69,9 @@ class UserControllerTest {
         // create users for testing
         testUsers = new User[2];
         testUsers[0] = new User("Hank", "Hill", "hank.hill@gmail.com", "abcd1234", "hankhill");
+        testUsers[0].setMfa(true);
+        testUsers[0].setQrImageUri("https://qrImagen.com/image.png");
+
         testUsers[1] = new User("Peggy", "Hill", "peggy.hill@gmail.com", "efgh5678", "peggyhill");
 
         // create two tokens for testing
@@ -197,14 +201,19 @@ class UserControllerTest {
         // mocking that the user was successfully persisted to database
         when(userService.postUser(testUsers[0])).thenReturn(true);
 
+
         // checking that the returned by controller method is true
-        assertTrue(userController.postUser(testUsers[0]));
+        ResponseEntity<String> response1 = userController.postUser(testUsers[0]);
+        MfaResponse objResponse1 = mapper.readValue(response1.getBody(), MfaResponse.class);
+        assertEquals(objResponse1.getSecretImageUri(), testUsers[0].getQrImageUri());
+        assertEquals(objResponse1.isMfa(), testUsers[0].isMfa());
 
         // mocking that the user was unsuccessfully persisted to database
         when(userService.postUser(loginUsers[0])).thenReturn(false);
 
         // checking that the returned by controller method is false
-        assertFalse(userController.postUser(loginUsers[0]));
+        ResponseEntity<String> response2 = userController.postUser(loginUsers[0]);
+        assertEquals(HttpStatus.BAD_REQUEST, response2.getStatusCode());
 
         // mocking that the user was successfully persisted to database
         when(userService.postUser(testUsers[0])).thenReturn(true);

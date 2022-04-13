@@ -11,6 +11,7 @@ import java.util.List;
 import com.revature.cachemoney.backend.beans.models.Account;
 import com.revature.cachemoney.backend.beans.models.User;
 
+import dev.samstevens.totp.exceptions.QrGenerationException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -82,7 +83,7 @@ class UserServiceTest {
      * persisted to database only if the database is empty.
      */
     @BeforeEach
-    void setupDB() {
+    void setupDB() throws QrGenerationException {
         validUserList = new LinkedList<>();
         User user1 = new User("Hank", "Hill", "hank.hill@gmail.com", "abcd1234", "propanemoney");
         User user2 = new User("Peggy", "Hill", "peggy.hill@gmail.com", "abcd1234", "best_sub_teacher");
@@ -257,7 +258,7 @@ class UserServiceTest {
          * - username
          */
         @Test
-        void postUser() {
+        void postUser() throws QrGenerationException {
             // test that valid users are persisted to database, method returns boolean
             // which is what we used to detect success or failure.
             assertTrue(userService.postUser(validUserList.get(0)));

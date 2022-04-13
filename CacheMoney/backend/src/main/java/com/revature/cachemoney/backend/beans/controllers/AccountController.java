@@ -3,6 +3,7 @@ package com.revature.cachemoney.backend.beans.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.cachemoney.backend.beans.annotations.RequireJwt;
@@ -16,10 +17,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Controller to handle requests related to Accounts.
+ * This is a controller to handle requests related to Accounts.
  * 
- * @author Alvin Frierson, Brian Gardner, Cody Gonsowski, & Jeffrey Lor
+ * @author Alvin Frierson, Brian Gardner, Cody Gonsowski, and Jeffrey Lor
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/accounts")
 public class AccountController {
@@ -50,7 +52,7 @@ public class AccountController {
 	 * @param userId    for current User
 	 * @param accountId for User's Account
 	 * @return Account associated with the User
-	 * @throws JsonProcessingException
+	 * @throws JsonProcessingException this is thrown when an issue arises from the JSON string
 	 */
 	@GetMapping
 	@RequireJwt
@@ -126,7 +128,7 @@ public class AccountController {
 	 * @param userId    for current User
 	 * @param accountId for User's Account
 	 * @return List of Transactions associated with a particular User's Account
-	 * @throws JsonProcessingException
+	 * @throws JsonProcessingException this is thrown when there is an issue with the JSON string
 	 */
 	@PostMapping(value = "/transactions")
 	@RequireJwt
@@ -180,31 +182,6 @@ public class AccountController {
 			@RequestBody Transaction transaction) {
 
 		if (accountService.withdrawFromAccount(userId, transaction)) {
-			return ResponseEntity.ok().build();
-		}
-
-		return ResponseEntity.badRequest().build();
-	}
-
-	/**
-	 * POST a withdrawl to an Account.
-	 * Returns a bad request if the POST is unsuccessful.
-	 * 
-	 * @param token       for current session
-	 * @param userId      for current User
-	 * @param transfer for User's Transaction
-	 * @return OK | Bad Request based on POST success
-	 */
-	@PostMapping(value = "/transfer")
-	@RequireJwt
-	public ResponseEntity<String> transfer(
-			@RequestHeader(name = "token") String token,
-			@RequestHeader(name = "userId") Integer userId,
-			@RequestBody Transfer transfer) {
-
-		if (accountService.transferBetweenAccountsOfOneUser(userId, transfer.getSourceAccountId(),
-				transfer.getDestinationAccountId(), transfer.getTransaction())) {
-
 			return ResponseEntity.ok().build();
 		}
 
