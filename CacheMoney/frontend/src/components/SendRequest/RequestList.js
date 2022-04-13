@@ -140,8 +140,8 @@ const RequestList = ({rerender, rerenderer}) => {
                         (request.direction === "towards us")  ? 
                             (
                                 <>
-                                <button onClick={onAccept(request.requestId)}>Accept Request</button>
-                                <button onClick={onDecline(request.requestId)}>Decline Request</button>
+                                <button onClick={onAccept(request.requestId)}id="submit-request"className="CancelRequest">Accept Request</button>
+                                <button onClick={onDecline(request.requestId)}id="submit-request"className="CancelRequest">Decline Request</button>
                                 </>
                             ) : (
                                 <button onClick={onDecline(request.requestId)} id="submit-request" className="CancelRequest">Cancel Request</button>
