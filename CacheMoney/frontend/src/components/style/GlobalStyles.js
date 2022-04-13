@@ -537,7 +537,7 @@ tr:nth-child(even) {
 .RequestListHeaderContainer {
 background-color: ${({ theme }) => theme.shadow};
 border-top-right-radius: 25px;
-width: 30%;
+width: 32%;
 text-align: center;
 font-size: 15px;
 
