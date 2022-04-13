@@ -530,6 +530,15 @@ tr:nth-child(even) {
     font-weight: bold;
 }
 
+.CancelRequest {
+    /*color: black;*/
+    font-size: 20px;
+
+    color: ${({ theme }) => theme.backlight};
+	background-color: ${({ theme }) => theme.text};
+	box-shadow: -5px 5px ${({ theme }) => theme.shadow};
+}
+
 /* request styling end */
 
 /* request list styling */

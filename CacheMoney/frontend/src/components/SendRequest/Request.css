@@ -5,10 +5,6 @@
 input, label {
     color: black;
 }
-/*.RequestFormContainer {
-
-    width: 50%;
-} */
 
 .RequestForm {
     padding: 0px 10px 0;
@@ -33,10 +29,10 @@ input, label {
     margin: 4px 0;
     display: inline-block;
     border-radius: 2px;
-    /*box-sizing: border-box;*/
 }
 
 #submit-request{
-    padding: 15;
+    padding: 5;
     width: 100%;
+    color: black;
 }

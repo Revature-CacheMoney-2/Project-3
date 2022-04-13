@@ -144,7 +144,7 @@ const RequestList = ({rerender, rerenderer}) => {
                                 <button onClick={onDecline(request.requestId)}>Decline Request</button>
                                 </>
                             ) : (
-                                <button onClick={onDecline(request.requestId)}>Cancel Request</button>
+                                <button onClick={onDecline(request.requestId)} id="submit-request" className="CancelRequest">Cancel Request</button>
                             )
                     }
                 </div>
