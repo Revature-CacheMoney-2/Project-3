@@ -530,15 +530,6 @@ tr:nth-child(even) {
     font-weight: bold;
 }
 
-.CancelRequest {
-    /*color: black;*/
-    font-size: 20px;
-
-    color: ${({ theme }) => theme.backlight};
-	background-color: ${({ theme }) => theme.text};
-	box-shadow: -5px 5px ${({ theme }) => theme.shadow};
-}
-
 /* request styling end */
 
 /* request list styling */
@@ -547,6 +538,7 @@ background-color: ${({ theme }) => theme.shadow};
 border-top-right-radius: 25px;
 width: 30%;
 text-align: center;
+font-size: 15px;
 
 }
 .Request {
@@ -567,6 +559,17 @@ text-align: center;
     margin-bottom: .2%;
 }
 
+.CancelRequest {
+    font-size: 20px;
+    color: ${({ theme }) => theme.backlight};
+ 	background-color: ${({ theme }) => theme.text};
+ 	box-shadow: -5px 5px ${({ theme }) => theme.shadow};
+ }
+
+.CancelRequest: hover {
+    color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.highlight};}
+ }
 
 /* Request list styling end */
 
