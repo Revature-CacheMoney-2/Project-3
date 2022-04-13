@@ -2,14 +2,10 @@
     margin: auto;
     width : 100%;
     align-self: center;
-    font-size: xx-large;
-    background-color: #ffffff;
-    border-bottom-style: double;
     border-top-style: double;
     border-style: double;
     box-sizing: border-box;
     font-weight: lighter;
-
 }
 
 .profile-page-container{
@@ -20,23 +16,20 @@
     text-align: center;
     color: #d3a940;
     font: bolder;
-    font-family: Algerian;
-    font-size: xxxxx-large;
+    font-family: "Arial Black";
+    font-size: xxx-large;
     font-weight: lighter;
-    letter-spacing: 20px;
-    line-height: 20px;
+    letter-spacing: 15px;
+    line-height: 30px;
     text-decoration: #d3a940;
     text-indent: each-line;
     text-transform: capitalize;
     vertical-align: 20px;
     box-sizing: content-box;
-
 }
 
 .main-body{
     margin-top: 70px;
-
-
 }
 
 .input-box{
@@ -48,7 +41,7 @@
     text-align: center;
     color: #d3a940;
     font: bolder;
-    font-family: Algerian;
+    font-family: bold;
     font-size: xx-large;
     font-weight: lighter;
     letter-spacing: 20px;
@@ -57,5 +50,4 @@
     text-indent: each-line;
     text-transform: capitalize;
     vertical-align: 20px;
-
 }
