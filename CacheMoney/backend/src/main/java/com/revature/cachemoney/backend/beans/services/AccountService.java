@@ -68,7 +68,7 @@ public class AccountService {
      */
     public Boolean postAccount(Account account, Integer userId) {
         if (account.getType().equals(accountTypes[0]) || account.getType().equals(accountTypes[1])) {
-            if (account.getUser().getUserId() == userId) {
+            if (account.getUser().getUserId().equals(userId)) {
                 accountRepo.save(account);
                 return true;
             }
