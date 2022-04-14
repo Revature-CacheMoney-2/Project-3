@@ -126,7 +126,7 @@ function Transfer({rerender}) {
                         </div>
 
                         <div className="transfer-amount" id="input">
-                            <label>Amount: </label>
+                            <label>Transfer Amount: </label>
                             <input
                                 type="number"
                                 min="0.00"
