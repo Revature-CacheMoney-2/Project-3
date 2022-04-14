@@ -13,6 +13,7 @@ import com.revature.cachemoney.backend.beans.services.UserService;
 
 import dev.samstevens.totp.exceptions.QrGenerationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -109,6 +110,24 @@ public class UserController {
     }
 
     /**
+     *  Updates the provided fields of the user. Requires the oldPassword param to update password.
+     * @param token The JSON Web Token for the current session.
+     * @param userId The id of the user to update
+     * @param oldPassword The old password if updating the password to verify that they know the old password.
+     * @param user The user object that will only have the fields to be update being set. The rest will be null.
+     * @return Whether the update was successful or not.
+     */
+    @PatchMapping
+    @RequireJwt
+    public ResponseEntity<String> updateUser(@RequestHeader(name= "token") String token, @RequestHeader(name="userId") Integer userId,
+                                             @RequestHeader(name="oldPassword", required = false) String oldPassword, @RequestBody User user) throws JsonProcessingException {
+        user.setUserId(userId);
+        boolean result = userService.patchUser(user, oldPassword);
+        return ResponseEntity.ok().body(mapper.writeValueAsString(result));
+
+    }
+
+    /**
      * DELETE a User with provided ID.
      * Returns a bad request if the DELETE is unsuccessful.
      * 
@@ -141,6 +160,7 @@ public class UserController {
         // make sure the user is valid
         if (tempUser != null) {
             if(tempUser.isMfa()){
+                System.out.println("2fa");
                 return ResponseEntity.ok().body(mapper.writeValueAsString(tempUser));
             }
             else {

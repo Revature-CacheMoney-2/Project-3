@@ -39,7 +39,7 @@ function NavBar(props) {
 					console.log(user);
 				})
 				.catch((error) => console.error(`Error: ${error}`));
-	
+
 				await axios
 				.get(`${config.url}notifications/unread/` + user.userId)
 				.then((response) => {

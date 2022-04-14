@@ -43,12 +43,19 @@ function userReducer(state = initialState, action) {
 				lastName: action.payload
 			};
 
+		case "UPDATE_EMAIL":
+			return {
+				...state,
+				email: action.payload
+			};
+
 		case "UPDATE_TOKEN":
 			return {
 				...state,
 				token: action.payload
 			};
-		
+
+
 		case "UPDATE_MFA":
 			return {
 				...state,

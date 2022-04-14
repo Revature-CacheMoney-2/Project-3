@@ -2,6 +2,7 @@ package com.revature.cachemoney.backend.beans.services;
 
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.ignoreCase;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -23,7 +24,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
+import javax.persistence.*;
 
 /**
  * Service layer for User requests.
@@ -72,7 +73,7 @@ public class UserService {
         User optionalUser = userRepo.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User with id:"+
                         userId+" does not exist in the DataBase."));
-        optionalUser.setPassword("");
+        //optionalUser.setPassword("");
         return Optional.of(optionalUser);
     }
 
@@ -146,6 +147,78 @@ public class UserService {
 
         return new MfaResponse(user.isMfa(), user.getQrImageUri());
     }
+
+    /**
+     *  The service layer method for updating a user
+     * @param user The user object containing the id and the fields to be updated.
+     * @param oldPassword The old password used only if the password is being update. Checked against the password in the database.
+     * @return Whether the update is successful or not.
+     */
+    public Boolean patchUser(User user, String oldPassword) {
+        // Check to see if a user with the given id exists. If the user does not the update fails.
+        User userToUpdate = getUserById(user.getUserId()).orElse(null);
+        if(userToUpdate == null) {
+            return false;
+        }
+        // Checks if each of the fields was passed in and then sets them to update the object in the database.
+        if(user.getFirstName() != null) {
+            userToUpdate.setFirstName(user.getFirstName());
+        }
+        if(user.getLastName() != null) {
+            userToUpdate.setLastName(user.getLastName());
+        }
+        if(user.getEmail() != null) {
+            userToUpdate.setEmail(user.getEmail().toLowerCase());
+        }
+        if(user.getUsername() != null) {
+            userToUpdate.setUsername(user.getUsername().toLowerCase());
+        }
+        System.out.println(user.getPassword());
+        if(user.getPassword() != null) {
+            // Checks if the old password provided is the same as the one stored in the database.
+            // If not the update fails.
+
+            System.out.println(oldPassword);
+            if(passwordEncoder.matches(user.getPassword(),userToUpdate.getPassword()))
+            {
+                System.out.println("SpotOne");
+                return false;
+            }
+            userToUpdate.setPassword(user.getPassword());
+            // Encodes the new password so that way the correct entry can be entered in the database.
+            // Both if the password is updated as well as if it does not.
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        } else {
+            // Stores the encrypted old password in the passed in user object and sets the
+            // password to a dummy one. This is done to pass the validation method if the
+            // password is not being updated.
+            user.setPassword(userToUpdate.getPassword());
+            System.out.println(user.getPassword());
+            userToUpdate.setPassword("dummyinfo");
+        }
+        if(areCredentialsValid(userToUpdate)) {
+            // Places the correct encrypted password to be placed in the database.
+            userToUpdate.setPassword(user.getPassword());
+            //System.out.println(userToUpdate.getPassword());
+            try {
+                userRepo.save(userToUpdate);
+            } catch(Exception e) {
+                System.out.println(e.getMessage());
+                // Catch is for any errors updating the entry in the database.
+                // The most likely causes would be that the username or email
+                // already exist in the database. This means that the entire
+                // update fails.
+                return false;
+            }
+            return true;
+        } else {
+            System.out.println("SpotTwo");
+            // Update fails if the credentials are invalid.
+            return false;
+        }
+
+    }
+
 
     // DELETE a user by ID
     public Boolean deleteUserById(Integer id) {

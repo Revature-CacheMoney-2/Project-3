@@ -1,0 +1,56 @@
+.container-child{
+    margin: auto;
+    width : 100%;
+    align-self: center;
+    border-top-style: double;
+    border-style: double;
+    font-weight: lighter;
+}
+
+.profile-page-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: #d3a940;
+    line-height: 30px;
+    text-indent: each-line;
+    text-transform: capitalize;
+    vertical-align: 20px;
+    box-sizing: content-box;
+}
+
+.main-body{
+    margin-top: 70px;
+}
+
+.input-box{
+    margin-top: 20px ;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: #d3a940;
+    font: bolder;
+    font-family: bold;
+    font-size: xx-large;
+    font-weight: lighter;
+    letter-spacing: 20px;
+    line-height: 30px;
+    text-decoration: #d3a940;
+    text-indent: each-line;
+    text-transform: capitalize;
+    vertical-align: 20px;
+}
+
+#errorMessage{
+	color: #cc3040;
+	text-align: center;
+	font-size: 15px;
+}
+#securityMessage{
+	text-align: center;
+	font-size: 15px;
+}

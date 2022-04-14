@@ -9,7 +9,7 @@ export const lightTheme = {
     background: "#fff",
     text: "#fff",
     shadow: "#3e4f3d",
-    bread: "#3d703a",
+    bread: "var(--green-dark-wallstreet)",
     highlight: "#d3a940",
     backlight: "#d3a940",
     ultrahighlight: "#f6ba65",
