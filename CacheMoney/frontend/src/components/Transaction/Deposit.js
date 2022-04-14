@@ -63,9 +63,6 @@ function Deposit(props) {
 					.catch((error) => console.error(`Error: ${error}`));
 			})
 			.catch((error) => console.error(`Error: ${error}`));
-		
-
-		
 	};
 
 	// what the submit button should do

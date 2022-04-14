@@ -108,27 +108,25 @@ function Transfer({rerender}) {
     }
 
     return (
-        <div className="create-account-outer-container">
-            <div className="create-account-inner-container">
-                <div className="account_create_form">
-                    <p className="account_create_form_header">Money Transfer</p>
+                <div className="transfer-form-container">
                     <ToastContainer />
-                    <form onSubmit={handleSubmit}>
-                        <div className="transfer-from-account">
-                            <label>From</label>
+                    <form onSubmit={handleSubmit} className="transfer-form">
+                    <h1 className="transfer-header">Money Transfer</h1>
+                        <div className="transfer-from-account" id="input">
+                            <label>From: </label>
                             <select name="sourceAccountId" onChange={handleChange} value={formData.sourceAccountId}>
                                 {accounts.length === 0 && <option value={null}>No Accounts to be Displayed</option>}
                                 { options }
                             </select>    
                         </div>
 
-                        <div className="transfer-to-account">
-                            <label>Recipient's Account ID:</label>
+                        <div className="transfer-to-account" id="input">
+                            <label>Recipient's Account ID: </label>
                             <input name="destinationAccountId" type="number" min="0" step="1" onChange={handleChange}/><br></br>
                         </div>
 
-                        <div className="transfer-amount">
-                            <label>Amount</label>
+                        <div className="transfer-amount" id="input">
+                            <label>Amount: </label>
                             <input
                                 type="number"
                                 min="0.00"
@@ -139,22 +137,17 @@ function Transfer({rerender}) {
                             />
                         </div>
 
-                        <div className="transfer-description">
-                            <label>Description</label>
+                        <div className="transfer-description" id="input">
+                            <label>Memo/Description: </label>
                             <input type="text" id="transfer-description" name="description" onChange={handleChange}/>
                         </div>
 
-                        <button
-                            className="account-create_submit_button"
-                            name="submit"
-                            id="create-new-account"
+                        <button id="submit-request" className="transfer-button"
                         >
                             Send Transfer
                         </button>
                     </form>
                 </div>
-            </div>
-        </div>
     );
 }
 

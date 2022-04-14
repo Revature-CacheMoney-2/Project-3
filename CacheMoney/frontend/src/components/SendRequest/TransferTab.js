@@ -15,7 +15,7 @@ const TransferTab = (props) => {
     const [rerenderer, rerender] = useRerenderer();
 
     return (
-        <div className="TransferTab">
+        <div className="RequestTab">
             <Transfer rerender={rerender}/>
             <TransferList/>
         </div>
